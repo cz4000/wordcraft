@@ -75,7 +75,9 @@ This follows Anthropic's "evaluations first" and superpowers' "no skill without 
 7. **Wording:** micro-test any rule that does not land: 5+ samples per wording, always with a no-skill control.
 8. **Pass:** the skill wins at least 8 of 10 tasks on Opus, does not lose on Sonnet or Haiku, and the owner's blind picks agree with the judges. *(My call on the threshold.)*
 
-`skill-creator`'s eval runner, blind comparator and viewer do the running and the side-by-side review.
+**Second measure (owner request, 2026-10-24):** every output of at least 75 words is scanned with the Pangram AI-text detector, and the mean score per arm is reported. A clear drop from `baseline` to the skill corroborates the judges. It is not a pass condition, because it measures how AI-like text looks, not how well it reads.
+
+Our own runner (`evals/run.py`) does the running, because `skill-creator`'s runner works inside the user's own setup and can't give a clean baseline. Our own two-order blind judge (`evals/judge.py`) does the judging.
 
 ## Where it lives
 
