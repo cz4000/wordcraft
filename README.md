@@ -1,4 +1,4 @@
-# writing-well
+# wordcraft
 
 A Claude skill that makes Claude write well: plain, warm and easy to read, in chat answers, emails and longer pieces.
 

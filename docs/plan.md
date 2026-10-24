@@ -1,10 +1,10 @@
-# writing-well Implementation Plan
+# wordcraft Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build and prove an open-source Claude skill, `writing-well`, that makes Claude's chat answers, emails and prose clearer and more pleasant to read.
+**Goal:** Build and prove an open-source Claude skill, `wordcraft`, that makes Claude's chat answers, emails and prose clearer and more pleasant to read.
 
-**Architecture:** The repo is a Claude Code plugin with one skill (`skills/writing-well/`) and a short always-on snippet for the user's CLAUDE.md. A small Python test harness runs Claude headless in a clean setup on ten writing tasks, with and without the skill, and blind Opus judges pick the better output. The skill gets written only after the baseline run shows which failures are real.
+**Architecture:** The repo is a Claude Code plugin with one skill (`skills/wordcraft/`) and a short always-on snippet for the user's CLAUDE.md. A small Python test harness runs Claude headless in a clean setup on ten writing tasks, with and without the skill, and blind Opus judges pick the better output. The skill gets written only after the baseline run shows which failures are real.
 
 **Tech Stack:** Markdown (the skill), Python 3.13 standard library plus pytest (the harness), the `claude` CLI 2.1.283 in headless mode (`claude -p --output-format stream-json`), `pdftotext` (the copyright check), `gh` (the repo).
 
@@ -12,7 +12,7 @@
 
 ## Global Constraints
 
-- Skill name: `writing-well`. Names may not contain "claude" or "anthropic".
+- Skill name: `wordcraft`. Names may not contain "claude" or "anthropic".
 - `description`: third person, at most 1,024 characters, says what the skill does and when to use it, and never summarizes its steps.
 - `SKILL.md` body: under 500 words. Reference files link directly from `SKILL.md`, one level deep.
 - Always-on snippet: at most 10 lines.
@@ -25,7 +25,7 @@
 
 ## Owner gates (Claude stops and asks before each)
 
-1. **Repo:** confirm that `cz4000` is the personal GitHub account, then approve creating the public repo `cz4000/writing-well`.
+1. **Repo:** confirm that `cz4000` is the personal GitHub account, then approve creating the public repo `cz4000/wordcraft`.
 2. **Every paid run:** Claude shows the dry-run call count first and waits for a yes.
 3. **The fixtures:** read the session transcript and the article source before they are committed.
 4. **Your CLAUDE.md:** approve adding the always-on lines to `~/.claude/CLAUDE.md`.
@@ -48,10 +48,10 @@
 - Test: `tests/test_repo_hygiene.py`
 
 **Interfaces:**
-- Produces: `.claude-plugin/plugin.json` with `{"name": "writing-well", "version": "0.1.0", "description": ..., "license": "MIT"}`. Task 2 loads the repo root with `--plugin-dir`.
+- Produces: `.claude-plugin/plugin.json` with `{"name": "wordcraft", "version": "0.1.0", "description": ..., "license": "MIT"}`. Task 2 loads the repo root with `--plugin-dir`.
 - Produces: `.private-words`, a local file with one word per line, gitignored. It holds the owner's work terms and is never committed.
 
-- [ ] **Step 1:** Owner gate 1. Run `gh auth switch --user cz4000`, then `gh repo create cz4000/writing-well --public --clone` in `~/GitHub/`.
+- [ ] **Step 1:** Owner gate 1. Run `gh auth switch --user cz4000`, then `gh repo create cz4000/wordcraft --public --clone` in `~/GitHub/`.
 - [ ] **Step 2:** Write the failing test.
 
 ```python
@@ -79,8 +79,8 @@ def test_book_never_tracked():
 - Produces: `build_command(arm: str, model: str, prompt: str, repo_root: Path) -> list[str]`
   - all arms: `claude -p <prompt> --model <model> --output-format stream-json --verbose` plus the clean-setup flags the spike settles on (Step 1)
   - `real`: adds `--plugin-dir <repo_root>` and `--add-dir <repo_root>/evals/always-on`
-  - `forced`: like `real`, but the prompt starts with the skill's slash command (`/writing-well:writing-well`, confirmed in Step 1)
-- Produces: `@dataclass RunResult(text: str, skill_triggered: bool, input_tokens: int, output_tokens: int)` and `parse_stream(lines: list[str]) -> RunResult`. `skill_triggered` is true when the stream holds a `Skill` tool call naming `writing-well`.
+  - `forced`: like `real`, but the prompt starts with the skill's slash command (`/wordcraft:wordcraft`, confirmed in Step 1)
+- Produces: `@dataclass RunResult(text: str, skill_triggered: bool, input_tokens: int, output_tokens: int)` and `parse_stream(lines: list[str]) -> RunResult`. `skill_triggered` is true when the stream holds a `Skill` tool call naming `wordcraft`.
 - Produces: the CLI `python evals/run.py run --arms baseline real --models opus --reps 3 --tasks all --out evals/runs/<name> [--dry-run]`. It writes `<out>/<model>/<arm>/<task_id>/rep<k>.json` (the RunResult plus the prompt). `--dry-run` prints the number of calls and runs none.
 - Produces: `python evals/run.py probe`, which exits 0 only when the setup is clean.
 - Produces: `load_task_prompt(task: dict, root: Path) -> str`. It appends each fixture's content under a `--- <filename> ---` header after the prompt. The task format is `{id: str, form: str, prompt: str, fixtures: list[str], expects_trigger: bool}`, read from `evals/tasks.json`. Task 3 fills that file.
@@ -166,12 +166,12 @@ The ten task ids, which are fixed. The builder writes the prompt text:
 ### Task 6: Write the skill (GREEN)
 
 **Files:**
-- Create: `skills/writing-well/SKILL.md`, `skills/writing-well/principles.md`, `skills/writing-well/forms.md`, `always-on.md`, `evals/check_quotes.py`
+- Create: `skills/wordcraft/SKILL.md`, `skills/wordcraft/principles.md`, `skills/wordcraft/forms.md`, `always-on.md`, `evals/check_quotes.py`
 - Modify: `evals/always-on/CLAUDE.md` (the same lines as `always-on.md`)
 - Test: `tests/test_skill_shape.py`, `tests/test_check_quotes.py`
 
 **Interfaces:**
-- Produces: `overlaps(text: str, book: str, n: int = 8) -> list[str]` in `check_quotes.py`. It returns every run of 8 or more words that appears in both texts, ignoring case and punctuation. Its CLI is `python evals/check_quotes.py <book.pdf>`. It runs `pdftotext` into a temp file and scans `skills/writing-well/*.md`, skipping lines that start with `> ` (credited quotes). It exits 1 on any overlap, if there are more than 3 quote lines, or if any quote runs to 25 words or more.
+- Produces: `overlaps(text: str, book: str, n: int = 8) -> list[str]` in `check_quotes.py`. It returns every run of 8 or more words that appears in both texts, ignoring case and punctuation. Its CLI is `python evals/check_quotes.py <book.pdf>`. It runs `pdftotext` into a temp file and scans `skills/wordcraft/*.md`, skipping lines that start with `> ` (credited quotes). It exits 1 on any overlap, if there are more than 3 quote lines, or if any quote runs to 25 words or more.
 
 Content requirements (from the design; the builder words them):
 - `SKILL.md`: a positive recipe for good writing, not a ban list. It ends with a final check: reread the draft as the reader. It links `principles.md` and `forms.md`.
@@ -181,7 +181,7 @@ Content requirements (from the design; the builder words them):
 
 - [ ] **Step 1:** Write the failing tests:
   - `test_skill_md_under_500_words`
-  - `test_frontmatter_name_and_description`: name is `writing-well`; description is at most 1,024 characters and contains neither "claude" nor "anthropic"
+  - `test_frontmatter_name_and_description`: name is `wordcraft`; description is at most 1,024 characters and contains neither "claude" nor "anthropic"
   - `test_references_one_level_deep`: every `.md` link in `SKILL.md` resolves, and the linked files link to no other `.md`
   - `test_always_on_at_most_10_lines`
   - `test_always_on_copies_match`: `always-on.md` and `evals/always-on/CLAUDE.md` are identical
@@ -189,7 +189,7 @@ Content requirements (from the design; the builder words them):
 - [ ] **Step 2:** Run. FAIL.
 - [ ] **Step 3:** Read the chapters from the owner's local copy of the book (never committed) and write the skill files and `check_quotes.py`.
 - [ ] **Step 4:** Run the tests, then `python evals/check_quotes.py <path to your copy of the book>.pdf`. Expected: PASS and exit 0.
-- [ ] **Step 5:** Commit: `feat: writing-well skill v0.1`.
+- [ ] **Step 5:** Commit: `feat: wordcraft skill v0.1`.
 
 ### Task 7: Prove it, iterate, pass the bar
 
@@ -209,7 +209,7 @@ Content requirements (from the design; the builder words them):
 **Files:**
 - Modify: `README.md`
 
-- [ ] **Step 1:** Write the README: what the skill does, both install routes (link `skills/writing-well` into `~/.claude/skills/`, or `claude --plugin-dir`), how to paste `always-on.md` into CLAUDE.md, the results summary, credit to Zinsser's *On Writing Well*, and how to rerun the tests.
-- [ ] **Step 2:** Install the skill for the owner: `ln -s ~/GitHub/writing-well/skills/writing-well ~/.claude/skills/writing-well`. Then owner gate 4: add the always-on lines to `~/.claude/CLAUDE.md`.
+- [ ] **Step 1:** Write the README: what the skill does, both install routes (link `skills/wordcraft` into `~/.claude/skills/`, or `claude --plugin-dir`), how to paste `always-on.md` into CLAUDE.md, the results summary, credit to Zinsser's *On Writing Well*, and how to rerun the tests.
+- [ ] **Step 2:** Install the skill for the owner: `ln -s ~/GitHub/wordcraft/skills/wordcraft ~/.claude/skills/wordcraft`. Then owner gate 4: add the always-on lines to `~/.claude/CLAUDE.md`.
 - [ ] **Step 3:** Run the full test suite and `check_quotes.py` one last time.
 - [ ] **Step 4:** Commit: `docs: README`. Push needs owner gate 5.

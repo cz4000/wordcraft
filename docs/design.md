@@ -1,4 +1,4 @@
-# writing-well: design
+# wordcraft: design
 
 A skill that makes Claude write well. Status: draft for the owner's approval. Date: 2026-10-24.
 
@@ -55,7 +55,7 @@ The source is William Zinsser's *On Writing Well* (25th anniversary edition, 200
 
 The method combines Anthropic's skill-authoring guide, Anthropic's `skill-creator` and superpowers' `writing-skills`.
 
-- **Name:** `writing-well`. Names may not contain "claude" or "anthropic", and an -ing name is the convention in both guides. *(My call.)*
+- **Name:** `wordcraft` (owner's choice, 2026-10-24). Names may not contain "claude" or "anthropic".
 - **`SKILL.md`:** a short positive recipe for what good writing is, under 500 words, plus a final check: reread the draft as the reader. Detail lives in reference files linked directly from `SKILL.md`, one level deep.
 - **Reference files:** the principles with their before-and-after pairs, plus short notes for each form: chat answer, end-of-task summary, email, longer piece. The builder decides the exact split.
 - **Description:** says both what the skill does and when to use it, as Anthropic advises, but never summarizes the steps. Superpowers found that a step summary lets Claude skip the body.
@@ -82,7 +82,7 @@ This follows Anthropic's "evaluations first" and superpowers' "no skill without 
 - A new **public, open-source** repository on the owner's personal GitHub account (owner's decision, 2026-10-24). Nothing from the owner's day job goes in it: no transcripts, names, examples or test data.
 - MIT license. *(My call.)*
 - The owner creates the repo or signs `gh` in to that account. Claude can't sign in for them.
-- Installed by linking the repo's skill folder into `~/.claude/skills/writing-well`, so edits in the repo take effect immediately.
+- Installed by linking the repo's skill folder into `~/.claude/skills/wordcraft`, so edits in the repo take effect immediately.
 - This design document becomes the repo's first commit.
 
 ## Left to the builder
