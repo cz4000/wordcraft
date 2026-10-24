@@ -22,7 +22,7 @@
     "fixtures": [
       "session-transcript.md"
     ],
-    "expects_trigger": true
+    "expects_trigger": false
   },
   {
     "id": "pr-description",

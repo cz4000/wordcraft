@@ -18,7 +18,8 @@ def test_ten_tasks_with_fixed_ids():
     assert [t["id"] for t in tasks] == EXPECTED_IDS
     for t in tasks:
         assert set(t) == {"id", "form", "prompt", "fixtures", "expects_trigger"}
-    assert [t["id"] for t in tasks if not t["expects_trigger"]] == ["quick-question"]
+    # chat answers are the always-on lines' job; the skill loads for drafting (docs/design.md)
+    assert [t["id"] for t in tasks if not t["expects_trigger"]] == ["quick-question", "mid-session-answer"]
 
 
 def test_every_fixture_exists():
