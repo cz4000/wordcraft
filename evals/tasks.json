@@ -1,0 +1,84 @@
+[
+  {
+    "id": "quick-question",
+    "form": "one-line technical question",
+    "prompt": "what's the difference between git merge and git rebase?",
+    "fixtures": [],
+    "expects_trigger": false
+  },
+  {
+    "id": "session-summary",
+    "form": "end-of-session summary to a user who was away",
+    "prompt": "Below is the transcript of a coding session you just ran on your own while the user stepped away. It stops right before your final message. Write that final message to the user, who is back now and hasn't read any of the transcript.",
+    "fixtures": [
+      "session-transcript.md"
+    ],
+    "expects_trigger": true
+  },
+  {
+    "id": "mid-session-answer",
+    "form": "answer a user question that touches internal names",
+    "prompt": "Below is the transcript of a coding session you just ran. The user is back, has skimmed nothing, and asks: \"Before I merge this, does it change anything for people who call naturalsize with gnu=True, or for really small numbers? Do I need to tell anyone?\" Answer them.",
+    "fixtures": [
+      "session-transcript.md"
+    ],
+    "expects_trigger": true
+  },
+  {
+    "id": "pr-description",
+    "form": "PR description from a diff",
+    "prompt": "Write the pull request description for this change. The reviewers maintain the library but haven't seen the bug report.",
+    "fixtures": [
+      "session-diff.patch"
+    ],
+    "expects_trigger": true
+  },
+  {
+    "id": "email-reply",
+    "form": "reply to an email",
+    "prompt": "Draft my reply to this email. I'd like to do it but I'd prefer the 45-minute slot if it's still free, and I can't make 20 Feb for the abstract, more like 27 Feb. Ask if that works.",
+    "fixtures": [
+      "email-in.md"
+    ],
+    "expects_trigger": true
+  },
+  {
+    "id": "email-decline",
+    "form": "say no to a request, kindly",
+    "prompt": "My old university friend Priya asked me to read her 80-page novel manuscript and give detailed feedback by next Friday. I'm swamped with a product launch and can't do it properly for at least a month. Write her an email saying no, kindly. I'd still like to read it eventually.",
+    "fixtures": [],
+    "expects_trigger": true
+  },
+  {
+    "id": "explain-concept",
+    "form": "explain a technical idea to a non-expert",
+    "prompt": "My manager isn't technical and asked why adding a database index made the reports page 40x faster but made saving orders slightly slower. Write a short message explaining it to her.",
+    "fixtures": [],
+    "expects_trigger": true
+  },
+  {
+    "id": "status-update",
+    "form": "weekly update from notes",
+    "prompt": "Turn my notes into the weekly update I post for my team and my manager.",
+    "fixtures": [
+      "status-notes.md"
+    ],
+    "expects_trigger": true
+  },
+  {
+    "id": "announce-change",
+    "form": "team chat message about a change",
+    "prompt": "Write a message for our #engineering channel: starting Monday, the main branch is protected. Every PR needs one approving review and green CI before it can merge, and nobody can push straight to main anymore, including leads. This is because last Thursday someone pushed a hotfix straight to main and it broke checkout for two hours. Admins can still override in a real emergency.",
+    "fixtures": [],
+    "expects_trigger": true
+  },
+  {
+    "id": "article-from-source",
+    "form": "short article from a transcript",
+    "prompt": "Write a short article about this press conference for a general audience of people who follow the news but aren't specialists.",
+    "fixtures": [
+      "article-source.md"
+    ],
+    "expects_trigger": true
+  }
+]

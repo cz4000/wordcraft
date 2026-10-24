@@ -1,0 +1,46 @@
+diff --git a/src/humanize/filesize.py b/src/humanize/filesize.py
+index c495fed..1519584 100644
+--- a/src/humanize/filesize.py
++++ b/src/humanize/filesize.py
+@@ -97,6 +97,16 @@ def naturalsize(
+         return f"{int(bytes_)}B" if gnu else _("%d Bytes") % int(bytes_)
+ 
+     exp = int(min(log(abs_bytes, base), len(suffix)))
++    value_ = format % (bytes_ / (base**exp))
++    # Rounding can push the value up to the base (e.g. 999999 -> "1000.0 kB"),
++    # so carry to the next suffix if there is one
++    try:
++        carry = exp < len(suffix) and abs(float(value_)) >= base
++    except ValueError:
++        carry = False
++    if carry:
++        exp += 1
++        value_ = format % (bytes_ / (base**exp))
+     space = "" if gnu else " "
+-    ret: str = format % (bytes_ / (base**exp)) + space + _(suffix[exp - 1])
++    ret: str = value_ + space + _(suffix[exp - 1])
+     return ret
+diff --git a/tests/test_filesize.py b/tests/test_filesize.py
+index 04774d9..b174397 100644
+--- a/tests/test_filesize.py
++++ b/tests/test_filesize.py
+@@ -82,6 +82,19 @@ import humanize
+         ([1.123456789, False, True], "1B"),
+         ([1.123456789 * 10**3, False, True], "1.1K"),
+         ([1.123456789 * 10**6, False, True], "1.1M"),
++        # Carry to the next suffix when rounding reaches the base
++        ([999_949], "999.9 kB"),
++        ([999_960], "1.0 MB"),
++        ([999_999], "1.0 MB"),
++        ([10**9 - 1], "1.0 GB"),
++        ([999_999, False, False, "%.0f"], "1 MB"),
++        ([999_499, False, False, "%.0f"], "999 kB"),
++        ([1024**2 - 52, True], "1023.9 KiB"),
++        ([1024**2 - 51, True], "1.0 MiB"),
++        ([1024**2 - 1, True], "1.0 MiB"),
++        ([1024**3 - 1, True], "1.0 GiB"),
++        ([1024**2 - 1, False, True], "1.0M"),
++        ([1000**11 - 1], "1000.0 QB"),
+     ],
+ )
+ def test_naturalsize(test_args: list[int] | list[int | bool], expected: str) -> None:

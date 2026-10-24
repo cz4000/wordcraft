@@ -1,0 +1,27 @@
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+EXPECTED_IDS = [
+    "quick-question", "session-summary", "mid-session-answer", "pr-description",
+    "email-reply", "email-decline", "explain-concept", "status-update",
+    "announce-change", "article-from-source",
+]
+
+
+def load():
+    return json.loads((ROOT / "evals" / "tasks.json").read_text())
+
+
+def test_ten_tasks_with_fixed_ids():
+    tasks = load()
+    assert [t["id"] for t in tasks] == EXPECTED_IDS
+    for t in tasks:
+        assert set(t) == {"id", "form", "prompt", "fixtures", "expects_trigger"}
+    assert [t["id"] for t in tasks if not t["expects_trigger"]] == ["quick-question"]
+
+
+def test_every_fixture_exists():
+    for t in load():
+        for name in t["fixtures"]:
+            assert (ROOT / "evals" / "fixtures" / name).is_file(), name
