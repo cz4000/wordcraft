@@ -4,6 +4,8 @@ wordcraft was built and tested on 24 and 25 October 2026 with Claude Code 2.1.28
 
 ## The short version
 
+**v0.9 is the current version: as good as v0.8, with shorter replies and fewer misplaced notes.** On a fourth fresh set (Opus), judges split v0.9 against v0.8 exactly evenly (11 pairs each, 8 ties). v0.9's replies used 95% of plain Claude's words against v0.8's 104%, and it put a "Check before sending" under 1 of 8 personal messages against v0.8's 4. It has been tested on one set, on Opus only.
+
 **v0.8 beats plain Claude on writing tasks it was never tuned on, on all three models.** Across four runs on fresh tasks (sets 2 and 3), blind judges preferred v0.8 in 72 pairs and plain Claude in 27, with 21 ties (73%, p<0.0001). On set 3 alone: Opus 18 to 6, Sonnet 18 to 8, Haiku 19 to 6. What made the difference: v0.8 checks the source material for problems the reader would want caught, such as a deadline that has already passed, a miscounted number of years or an assumed date, and lists them after the draft. On Opus its replies are slightly shorter than plain Claude's; on Sonnet and Haiku they run about a quarter longer, because of the checks.
 
 Earlier versions didn't carry over. v0.5 matched plain Claude on both fresh sets (12 to 11, and 12 to 12) while writing about a fifth shorter. Its big lead on the ten tasks it was developed on (21 to 4) came largely from tuning on them.
@@ -57,6 +59,18 @@ A third agent wrote 15 more tasks without seeing the skill or the earlier sets (
 | Haiku | 19 | 6 | 5 | 76% | 9–2–4 | 0.02 | 123% |
 
 Every model lost the story summary for the head of English. None of those replies had a check list. Plain Claude added practical help the teacher would want, such as links to exam questions, a warning that reluctant readers may find the story slow, and a reminder about copying permission. Haiku also lost the condolence message, and v0.8 added a "Check before sending" list under the condolence note in 5 of its 6 replies across models, which is out of place in a sympathy message.
+
+### Set 4: v0.9 against v0.8
+
+v0.9 made two changes, both from set 3's gaps. The check list appears only when something needs the user's attention, at one line per item and one line at most in a personal message. And Claude thinks about what the reader will do next, adding the one or two practical things they'd want. A fourth agent wrote 15 more tasks without seeing the skill or the earlier sets (`evals/heldout4/`), weighted toward personal messages (a funeral tribute, a message to a friend with a cancer diagnosis, a card for a newly qualified nurse, a reply to a one-star review) and summaries for readers who must decide something. Opus only.
+
+| Comparison | First better | Second better | Tie | Share |
+|---|---|---|---|---|
+| v0.9 vs v0.8 | 11 | 11 | 8 | 50% |
+| v0.9 vs plain | 13 | 10 | 7 | 57% |
+| v0.8 vs plain | 11 | 7 | 12 | 61% |
+
+v0.9 won the decision summaries (an IT supplier proposal, a heat-pump study), where it tied findings to the reader's own situation. v0.8 won the house-sitter notes, the self-review, the resignation letter and the funeral words. Both versions beat plain Claude by less here than on sets 2 and 3, likely because personal messages are where plain Claude already writes well.
 
 ## How it was tested
 
@@ -134,7 +148,8 @@ What changed between versions:
 - **v0.6** (not shipped): rule 1 became "bottom line up front" (BLUF), the summary followed SBAR, and a new form covered raising a problem. Openings oversimplified and articles stopped explaining terms.
 - **v0.7** (not shipped): v0.5 plus SBAR's "assessment" and "recommendation" parts in the summary. No measured gain.
 - **v0.5.1:** v0.5's skill text, with BLUF and SBAR credited in `principles.md` as the practices its summary order draws on.
-- **v0.8** (shipped): Claude checks the source for problems the reader would want caught and lists them, with any guess or outside fact, under "Check before sending". Notes about its own choices stay banned. The always-on lines change to match. Tested on held-out set 2 only, on Opus.
+- **v0.8:** Claude checks the source for problems the reader would want caught and lists them, with any guess or outside fact, under "Check before sending". Notes about its own choices stay banned. The always-on lines change to match. Tested on held-out sets 2 and 3, on Opus, Sonnet and Haiku.
+- **v0.9** (shipped): the check list appears only when something needs attention (one line each, one line at most in personal messages), and Claude adds the one or two practical things the reader will want next. Equal to v0.8 on set 4, with shorter replies. Opus only.
 - **v0.4.2:** v0.4.1 plus wording fixes from a final edit. It fixes three examples in `principles.md` that broke their own principle, and clarifies two lines of `SKILL.md` and one always-on line. It was not tested separately.
 - **v0.5:**
   - The form guidance moves from `forms.md` into `SKILL.md`, which grows from 489 to 833 words, and `forms.md` is retired.
@@ -203,9 +218,8 @@ Six texts from round 3 were scanned by hand with Pangram's free checker: three t
 
 ## Known gaps
 
-- **Check lists where they don't belong.** v0.8 put a "Check before sending" under most condolence messages.
-- **One step further for the reader.** Plain Claude still sometimes adds practical extras the reader would want, such as teaching notes for a story summary, that the skill leaves out.
-- **Longer on Sonnet and Haiku.** Their checks make replies about a quarter longer than plain Claude's.
+- **v0.9 is only tested on Opus, on one set.** Its fixes for misplaced check lists and missing practical extras worked mechanically, but didn't raise the judges' preference over v0.8.
+- **Longer on Sonnet and Haiku (v0.8).** Their checks made replies about a quarter longer than plain Claude's; v0.9's conditional checks may help, but that hasn't been measured.
 - **Invented reasons in emails.** All three v0.4.1 replies to the speaker invitation add a reason the user never gave, and only one flags it. In v0.5, two of three open with a plain yes and add no reason. The third still opens "Thanks for getting in touch" and gives a reason the user never stated.
 - **Uneven forms.** On Opus v0.5 the decline email and the article only tie the baseline. On Sonnet and Haiku (v0.4) the summary fails the loading check.
 - **Summaries still use some unexplained names.** v0.5 summaries lead with the outcome and group the changes, but still mention things like `freezegun` and `#328` without saying what they are.

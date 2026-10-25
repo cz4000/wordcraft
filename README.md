@@ -231,7 +231,7 @@ The honest headline comes from three held-out tests: sets of 15 new writing task
 | **v0.8, set 2** | **17** | 7 | 6 |
 | **v0.8, set 3** | **18** | 6 | 6 |
 
-On set 3, v0.8 also beat plain Sonnet (18 to 8) and plain Haiku (19 to 6). Across all four fresh-task runs, the judges preferred v0.8 in 72 pairs and plain Claude in 27 (p<0.0001).
+On set 3, v0.8 also beat plain Sonnet (18 to 8) and plain Haiku (19 to 6). The current version, v0.9, tied v0.8 on a fourth fresh set (11 pairs each), with shorter replies and fewer misplaced check lists, so it ships as the cleaner of two equals. Across all four fresh-task runs, the judges preferred v0.8 in 72 pairs and plain Claude in 27 (p<0.0001).
 
 **v0.5 matched plain Claude, about a fifth shorter, but didn't beat it.** Where plain Claude won, it was usually because it caught a real problem in the material and flagged it. The skill's rule against notes about the draft held that back.
 
