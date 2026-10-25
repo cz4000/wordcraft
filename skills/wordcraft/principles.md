@@ -1,6 +1,6 @@
 # Principles
 
-Each principle answers a failure seen when Claude wrote without this skill, or one the skill's owner named after reading blind samples. The ideas come from William Zinsser's *On Writing Well* (25th anniversary edition, 2001) and the six rules at the end of George Orwell's essay "Politics and the English Language" (1946), restated here in our own words. Page numbers are from Zinsser's edition.
+Each principle answers a failure seen when Claude wrote without this skill, or one the skill's owner named after reading blind samples. The ideas come from William Zinsser's *On Writing Well* (25th anniversary edition, 2001) the six rules at the end of George Orwell's essay "Politics and the English Language" (1946), and Charlie Euchner's "Ten Essential Rules for Writing Well" (*The Elements of Writing*, 2018, https://theelementsofwriting.com/ten-essential-rules-for-writing-well/), restated here in our own words. Page numbers are from Zinsser's edition.
 
 ## Contents
 
@@ -28,6 +28,8 @@ The opening has one job: tell the reader what this is and why it's worth their a
 
 Don't assume readers know what you know, or that they remember what you explained earlier (ch. 15, p. 149). That goes beyond names. Say what each thing is *for* and why it matters to them, not only what it's called or what you did to it. Lead them step by step, with no leaps, so each sentence follows from the last (pp. 149–150). Describe a thing before you name it, and explain each technical term the first time it appears (pp. 156, 165). Orwell put the word-level version as two rules: choose the short word over the long one, and the everyday word over the jargon or scientific one.
 
+Euchner pictures the same reader more kindly: intelligent, but without your background (rule 10). Write for that person and you neither lose them nor talk down to them.
+
 The owner of this skill added one convention: plain words first, then the technical name in brackets for readers who want to find it.
 
 **Before:** "Fixed the `flush_on_exit` path so `CACHE_WARM` no longer races the session loader."
@@ -46,7 +48,7 @@ Most first drafts can lose a large share of their words without losing any infor
 
 ## Match the shape to the content
 
-A paragraph is a unit of thought, and chopping one line of reasoning into labelled fragments makes the reader do the joining (ch. 10, "Paragraphs", pp. 80–81). But a real list can be a list (ch. 10, p. 74). When content is a set of separate items, such as a weekly status, options or next steps, a few short headed groups let a busy reader find their part. The skill's owner also asked for a small diagram or example where it shows a difference faster than prose. Don't write anything you wouldn't say out loud to the person (ch. 5, p. 27).
+A paragraph is a unit of thought, and chopping one line of reasoning into labelled fragments makes the reader do the joining (ch. 10, "Paragraphs", pp. 80–81). But a real list can be a list (ch. 10, p. 74). Give each paragraph one idea and develop it. Take a complicated subject apart and walk the reader through the pieces in order, instead of cramming several ideas into one passage (Euchner, rules 3–5). When content is a set of separate items, such as a weekly status, options or next steps, a few short headed groups let a busy reader find their part. The skill's owner also asked for a small diagram or example where it shows a difference faster than prose. Don't write anything you wouldn't say out loud to the person (ch. 5, p. 27).
 
 **Before** (one explanation, chopped up): "**Cause:** The cache expired early. **Fix:** I changed the setting. **Impact:** Pages load faster."
 
@@ -58,7 +60,7 @@ A paragraph is a unit of thought, and chopping one line of reasoning into labell
 
 ## Write to this person about this situation
 
-A letter that sounds like a person beats one in an institutional voice (ch. 16, "Business Writing", p. 171), and writing that has humanity and warmth is what holds a reader (ch. 1, p. 5). Reaching for the nearest stock phrase marks writing as hack work (ch. 6, "Words", pp. 33–35). Orwell's first rule says the same about figures of speech: if you're used to seeing it in print, don't use it. Generic warmth ("Thanks for getting in touch", "Looking forward to it") is still stock. The cure is specifics: answer what this person said, in the user's own voice. Plain is not the same as breezy, though. Folksy, pal-to-pal writing is worse than plain English (ch. 20, pp. 234–235).
+A letter that sounds like a person beats one in an institutional voice (ch. 16, "Business Writing", p. 171), and writing that has humanity and warmth is what holds a reader (ch. 1, p. 5). Reaching for the nearest stock phrase marks writing as hack work (ch. 6, "Words", pp. 33–35). Orwell's first rule says the same about figures of speech: if you're used to seeing it in print, don't use it. Reading the draft aloud helps you hear stock phrases (ch. 20, pp. 236–237), and so does editing in passes, hunting one kind of problem at a time (Euchner, rules 8–9). Generic warmth ("Thanks for getting in touch", "Looking forward to it") is still stock. The cure is specifics: answer what this person said, in the user's own voice. The specifics have to be real. When the user hasn't given a reason, a date or a feeling, don't supply one to make the message sound personal. Leave it out, or flag it as a guess. Plain is not the same as breezy, though. Folksy, pal-to-pal writing is worse than plain English (ch. 20, pp. 234–235).
 
 **Before:** "Thanks so much for reaching out! I'd be happy to help. Looking forward to it!"
 
@@ -66,7 +68,7 @@ A letter that sounds like a person beats one in an institutional voice (ch. 16, 
 
 ## Stay true to the material
 
-One invented or inflated statement makes readers doubt everything after it (ch. 10, "Credibility", p. 78). The real material is more interesting than anything you add to it, and colour is part of the fact, not paint on top (pp. 89–90).
+One invented or inflated statement makes readers doubt everything after it (ch. 10, "Credibility", p. 78). The real material is more interesting than anything you add to it, and colour is part of the fact, not paint on top (pp. 89–90). Facts from your own knowledge are additions too. In a piece built from a source, leave them out, or flag them in one line after the piece so the reader can check them.
 
 **Before:** a congratulations note says "Congratulations on the promotion!" when the request only says the person moved to a new team.
 
@@ -88,7 +90,7 @@ The same goes for decorative emoji and bold on every line. Let word order and po
 
 > "when you're ready to stop, stop." (Zinsser, ch. 9, p. 66)
 
-An ending that recaps suggests you think the reader missed the point (ch. 9, pp. 64–66). Let readers notice things for themselves instead of telling them what to make of them (ch. 10, p. 92). That includes notes after a draft explaining your choices. The one exception isn't from the book: a guess the reader must check before sending, like a date or a number, gets one line.
+An ending that recaps suggests you think the reader missed the point (ch. 9, pp. 64–66). Let readers notice things for themselves instead of telling them what to make of them (ch. 10, p. 92). That includes notes after a draft explaining your choices. The one exception isn't from the book: a guess or an outside fact the reader must check, like a date or a claim the source doesn't make, gets one line.
 
 **Before:** an email draft, followed by "I kept the tone warm and left out the deadline so it doesn't feel like pressure."
 

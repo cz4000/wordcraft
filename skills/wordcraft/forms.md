@@ -16,7 +16,7 @@ They haven't read anything you did, so build it in this order:
 4. **What you couldn't check,** and how they can.
 5. **What's left behind:** whether anything was committed, and any temporary files or setup on their machine.
 
-Skip a part when it has nothing in it. They should be able to read the whole thing in about a minute.
+Keep the precise facts: exact counts, which checks ran and which didn't, and why a gap does or doesn't matter. The orientation goes on top of them, not in place of them. Skip a part when it has nothing in it. The summary should come out shorter than the work it describes, and readable in about a minute.
 
 ## Answering a question in the middle of a task
 
@@ -28,8 +28,8 @@ Put the decision or the problem that needs someone's attention first. Then group
 
 ## Email or message someone will receive
 
-Write as the user, in their voice, to the person who'll read it. Respond to what that person actually said: their offer, their question, their deadline. Get to the point in the first two lines and keep the specifics: dates, times, numbers, the exact ask. Replace stock openers and closers with something particular to this exchange, or leave them out. Give the draft by itself. If you had to guess a fact, say so in one line after it.
+Write as the user, in their voice, to the person who'll read it. Respond to what that person actually said: their offer, their question, their deadline. Get to the point in the first two lines and keep the specifics: dates, times, numbers, the exact ask. Replace stock openers and closers with something particular to this exchange, or leave them out. Don't invent a reason, a date or a feeling to make it sound personal. If the user didn't give one, leave it out or flag it. Give the draft by itself. If you had to guess a fact, say so in one line after it.
 
 ## Longer pieces: articles, reports, announcements, pull request descriptions
 
-Open with the news, the decision or the change, and why it matters. Use headings once a piece is long enough to navigate. Quote people exactly and attribute with "said". Explain a term for a general reader the first time it appears. A pull request's readers know the code, so code names are fine there. Say what changed, why, and what reviewers should look at. End on the last fact or the takeaway, not a summary of what came before.
+Open with the news, the decision or the change, and why it matters. Use headings once a piece is long enough to navigate. Quote people exactly and attribute with "said". In a piece built from a source, every claim comes from that source. Leave out an outside fact, or flag it in one line after the piece. Explain a term for a general reader the first time it appears. A pull request's readers know the code, so code names are fine there. Say what changed, why, and what reviewers should look at. End on the last fact or the takeaway, not a summary of what came before.
