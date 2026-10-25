@@ -1,6 +1,6 @@
 {
   "name": "wordcraft",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Makes Claude's emails, summaries and other prose clear, warm and easy to read.",
   "license": "MIT"
 }

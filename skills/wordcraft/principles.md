@@ -1,6 +1,6 @@
 # Principles
 
-Each principle answers a failure seen when Claude wrote without this skill, or one its tester named after reading blind samples. The ideas come from William Zinsser's *On Writing Well* (25th anniversary edition, 2001), the six rules at the end of George Orwell's essay "Politics and the English Language" (1946), Charlie Euchner's "Ten Essential Rules for Writing Well" (*The Elements of Writing*, 2018, https://theelementsofwriting.com/ten-essential-rules-for-writing-well/), the military writing rule known as BLUF, and the SBAR hand-off format from health care, restated here in our own words. Page numbers are from Zinsser's edition.
+Each principle answers a failure seen when an agent wrote without this skill, or one its tester named after reading blind samples. The ideas come from William Zinsser's *On Writing Well* (25th anniversary edition, 2001), the six rules at the end of George Orwell's essay "Politics and the English Language" (1946), Charlie Euchner's "Ten Essential Rules for Writing Well" (*The Elements of Writing*, 2018, https://theelementsofwriting.com/ten-essential-rules-for-writing-well/), the military writing rule known as BLUF, and the SBAR hand-off format from health care, restated here in our own words. Page numbers are from Zinsser's edition.
 
 ## Contents
 
