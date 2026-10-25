@@ -5,6 +5,8 @@ The clean setup was settled by a spike on Claude Code 2.1.283, without an API ke
   --strict-mcp-config        keeps out every MCP server
   Each call runs from a fresh temp folder. For the real and forced arms that folder holds the
   always-on lines as CLAUDE.md, which is where a user would put them. (--add-dir did not load them.)
+  --add-dir on the plugin folder lets the skill read its own reference files; without it, headless
+  mode denied the Read and the skill ran on SKILL.md alone.
 """
 
 import argparse
@@ -14,7 +16,7 @@ import subprocess
 import sys
 import tempfile
 from concurrent.futures import ThreadPoolExecutor
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -31,6 +33,7 @@ LEAK_MARKERS = ("humanizer", "unslop", "poteto", "superpowers", "behavioral guid
 # A long-session summary on Opus can take several minutes.
 TIMEOUT_SECONDS = 600
 WORKERS = 4
+REFERENCE_FILES = ("principles.md", "forms.md")
 LIST_PROMPT = (
     "List every skill you can use, by name. Then quote the first line of any "
     "CLAUDE.md instructions you were given, or say 'none'."
@@ -44,6 +47,7 @@ class RunResult:
     input_tokens: int
     output_tokens: int
     error: str = ""
+    reference_reads: list[str] = field(default_factory=list)
 
 
 def build_command(arm: str, model: str, prompt: str, plugin_dir: Path) -> list[str]:
@@ -53,7 +57,7 @@ def build_command(arm: str, model: str, prompt: str, plugin_dir: Path) -> list[s
         prompt = f"{SLASH_COMMAND} {prompt}"
     cmd = ["claude", "-p", prompt, "--model", model, *CLEAN_FLAGS]
     if arm != "baseline":
-        cmd += ["--plugin-dir", str(plugin_dir)]
+        cmd += ["--plugin-dir", str(plugin_dir), "--add-dir", str(plugin_dir)]
     return cmd
 
 
@@ -66,6 +70,7 @@ def workdir_for(arm: str, always_on: Path) -> Path:
 
 def parse_stream(lines: list[str]) -> RunResult:
     triggered = False
+    reads: list[str] = []
     result = None
     for line in lines:
         if not line.strip():
@@ -79,6 +84,10 @@ def parse_stream(lines: list[str]) -> RunResult:
                     and "wordcraft" in str(block.get("input", {}).get("skill", ""))
                 ):
                     triggered = True
+                if block.get("type") == "tool_use" and block.get("name") == "Read":
+                    name = Path(str(block.get("input", {}).get("file_path", ""))).name
+                    if name in REFERENCE_FILES:
+                        reads.append(name)
         elif event.get("type") == "result":
             result = event
     if result is None:
@@ -89,7 +98,8 @@ def parse_stream(lines: list[str]) -> RunResult:
         + usage.get("cache_creation_input_tokens", 0)
         + usage.get("cache_read_input_tokens", 0)
     )
-    return RunResult(result.get("result") or "", triggered, input_tokens, usage.get("output_tokens", 0))
+    return RunResult(result.get("result") or "", triggered, input_tokens, usage.get("output_tokens", 0),
+                     reference_reads=reads)
 
 
 def _subprocess_runner(cmd: list[str], cwd: Path) -> list[str]:
@@ -159,7 +169,8 @@ def run_all(root: Path, arms: list[str], models: list[str], reps: int,
         path.parent.mkdir(parents=True, exist_ok=True)
         record = {**asdict(result), "model": model, "arm": arm, "task_id": task["id"], "rep": rep, "prompt": prompt}
         path.write_text(json.dumps(record, indent=2))
-        status = f"error: {result.error}" if result.error else f"{len(result.text.split())} words, skill={result.skill_triggered}"
+        status = (f"error: {result.error}" if result.error else
+                  f"{len(result.text.split())} words, skill={result.skill_triggered}, reads={result.reference_reads}")
         print(f"{model}/{arm}/{task['id']}/rep{rep}: {status}", flush=True)
 
     with ThreadPoolExecutor(WORKERS) as pool:

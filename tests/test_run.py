@@ -106,3 +106,22 @@ def test_dry_run_counts_calls(tmp_path, capsys):
     )
     assert "12 calls" in capsys.readouterr().out
     assert not (tmp_path / "out").exists()
+
+
+def test_real_can_read_the_skill_reference_files():
+    # principles.md and forms.md live in the plugin folder, outside the temp workdir
+    for arm in ("real", "forced"):
+        cmd = run.build_command(arm, "haiku", "hi", ROOT)
+        assert cmd[cmd.index("--add-dir") + 1] == str(ROOT)
+    assert "--add-dir" not in run.build_command("baseline", "haiku", "hi", ROOT)
+
+
+def test_parse_stream_records_reference_reads():
+    lines = [
+        json.dumps({"type": "assistant", "message": {"content": [
+            {"type": "tool_use", "name": "Read", "input": {"file_path": "/x/skills/wordcraft/forms.md"}},
+            {"type": "tool_use", "name": "Read", "input": {"file_path": "/x/notes.txt"}},
+        ]}}),
+        json.dumps({"type": "result", "result": "done", "usage": {}}),
+    ]
+    assert run.parse_stream(lines).reference_reads == ["forms.md"]
