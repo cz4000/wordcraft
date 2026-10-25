@@ -4,7 +4,15 @@ wordcraft was built and tested between 24 and 25 October 2026 with Claude Code 2
 
 ## The short version
 
-With wordcraft installed, Opus and Haiku write measurably better replies, emails, updates and announcements. Blind judges preferred the skill's version in about three out of four decided pairs. On Sonnet the skill is neutral. End-of-session summaries improved but are still the weakest form. The skill does not make Claude's writing look human to an AI detector, and wasn't designed to.
+With wordcraft, blind judges preferred Opus's and Haiku's writing in about seven of ten decided pairs. The gains were largest on announcements, explanations, status updates and pull request descriptions. On Sonnet the skill made no measurable difference. The bar set before testing was **not** met in full.
+
+Three limits apply to every number here:
+
+- **Tuned and scored on the same tasks.** Each version was adjusted after seeing results on the same ten tasks it was scored on, with no held-out tasks, so the gains may not carry over in full to new writing.
+- **The reference files were blocked.** The test setup didn't let the skill read `principles.md` and `forms.md`, so these results measure `SKILL.md` and the always-on lines alone. The runner is fixed, but the fixed setup hasn't been run yet.
+- **Thirty pairs are ten tasks.** Each run's 30 pairs are 10 tasks × 3 samples, not 30 independent cases.
+
+The skill does not make Claude's writing look human to an AI detector, and wasn't designed to.
 
 ## How it was tested
 
@@ -39,6 +47,25 @@ What changed between versions:
 - **v0.3:** never invent a specific to sound personal. Flag outside facts. Added Euchner's ten rules.
 - **v0.4:** never claim a check, fix or release the work doesn't show. Never mention the skill in a reply.
 
+## Results by task
+
+A task is a win when the skill's version was preferred in more of its three samples than the baseline's.
+
+| Task | Opus v0.3 | Opus v0.4 | Sonnet v0.4 | Haiku v0.4 |
+|---|---|---|---|---|
+| quick-question | win | win | loss | win |
+| session-summary | loss | tie | win | loss |
+| mid-session-answer | tie | loss | loss | win |
+| pr-description | win | win | tie | win |
+| email-reply | win | win | win | tie |
+| email-decline | win | **loss** | tie | **loss** |
+| explain-concept | win | win | win | win |
+| status-update | win | win | loss | win |
+| announce-change | win | win | win | win |
+| article-from-source | win | tie | loss | tie |
+
+The decline email lost on Opus and Haiku in v0.4, after winning on Opus in v0.1 to v0.3. The mid-session answer lost on Opus and Sonnet. Only the explanation and the announcement won on every model.
+
 ## Against the pass bar set before testing
 
 | Condition | v0.3 | v0.4 |
@@ -65,26 +92,29 @@ The always-on lines cover chat answers, and the skill loads for drafting. Across
 | Sonnet | 22 of 24 |
 | Haiku | 20 of 24 |
 
-Most misses were on the end-of-session summary.
+Five of the six misses were on the end-of-session summary. That fails the plan's own loading check, which asks for at least 2 of 3 samples on every drafting task. Haiku loaded the skill for the summary in 0 of 3 samples, and Sonnet in 1 of 3. So Haiku's summary loss happened without the skill loaded at all.
 
 ## AI detection (Pangram)
 
-Six texts from round 3 were scanned by hand with Pangram's free checker: three tasks, each with and without the skill. All six scored 100% AI (`evals/pangram/round3-opus.md`). Pangram detects who wrote a text, not how well it reads.
+Six texts from round 3 were scanned by hand with Pangram's free checker: three tasks, each with and without the skill. All six scored 100% AI (`evals/pangram/round3-opus.md`; the word counts there are Pangram's own, which count formatting marks too). Pangram detects who wrote a text, not how well it reads.
 
 ## Before and after (Opus, round 4)
 
 **Reply email.** Without the skill: 207 words, opening with "Here's a draft:", thanking the colleague, offering a fallback slot the user never mentioned, and ending with a paragraph explaining the draft. With the skill: 75 words.
 
-> Hi Dana, Thanks for asking. I'd be glad to speak at Riverside DevConf. If one of the 45-minute slots on 15 May is still free, I'd prefer that. … I can't get a title and abstract to you by 20 February, though. Would 27 February work, or is that too late for publishing the schedule?
+> Hi Dana, Thanks for asking. I'd be glad to speak at Riverside DevConf. If one of the 45-minute slots on 15 May is still free, I'd prefer that. The extra time would let me cover the material properly. I can't get a title and abstract to you by 20 February, though. Would 27 February work, or is that too late for publishing the schedule?
 
-**Quick git question.** Without the skill: 323 words, two headings, two diagrams and a four-row table. With the skill: 240 words that keep the two diagrams the readers valued and drop the reference-page scaffolding.
+The skill's version still breaks one of its own rules. "The extra time would let me cover the material properly" is a reason the user never gave.
+
+**Quick git question.** Without the skill: 323 words, three headings, two diagrams and a four-row table. With the skill: 240 words that keep the two diagrams the readers valued and drop the reference-page scaffolding.
 
 **Team announcement.** Without the skill: 260 words, with a date it calculated itself, a 🙏, and a rule for admin overrides that nobody asked for. With the skill: 159 words that open with what changes and why, and one line flagging the missing detail: who to contact for an emergency override.
 
 ## Known gaps
 
-- **End-of-session summaries** are the weakest form: a tie on Opus in round 4, and they lost in rounds 1 to 3.
-- **Stock openers survive.** "Heads up:" still opens most announcements.
-- **Emails sometimes still add a reason the user didn't give.** v0.3 and v0.4 now flag it rather than state it as fact.
+- **Invented reasons in emails.** All three Opus v0.4 replies to the speaker invitation add a reason the user never gave, and none flags it. The decline email adds invented details too, which may explain its losses.
+- **Uneven forms.** The decline email, the mid-session answer and the end-of-session summary are the weakest. The summary also fails the loading check on Sonnet and Haiku.
+- **Stock openers survive.** "Heads up:" still opens most announcements, and one reply opens "Thanks for getting in touch".
 - **Sonnet** doesn't measurably benefit.
-- **Small samples.** Three samples per task, and an owner read of 18 pairs in total.
+- **Untested since the last fixes.** The current version tells chat answers to answer first and gives the skill access to its reference files. Neither change has been measured.
+- **Small samples.** Three samples per task, ten tasks, and an owner read of 18 pairs in total.

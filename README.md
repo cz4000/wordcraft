@@ -22,6 +22,8 @@ After (75 words):
 
 > Hi Dana, Thanks for asking. I'd be glad to speak at Riverside DevConf. If one of the 45-minute slots on 15 May is still free, I'd prefer that. The extra time would let me cover the material properly. I can't get a title and abstract to you by 20 February, though. Would 27 February work, or is that too late for publishing the schedule?
 
+It isn't perfect. "The extra time would let me cover the material properly" is a reason the user never gave, which is exactly what the skill tells Claude not to do.
+
 ## Install
 
 wordcraft has two parts: the skill, which Claude loads when it's drafting something, and a few always-on lines that shape every chat reply.
@@ -38,7 +40,7 @@ ln -s ~/code/wordcraft/skills/wordcraft ~/.claude/skills/wordcraft
 
 To try it for one session without installing, run `claude --plugin-dir ~/code/wordcraft` instead.
 
-**2. The always-on lines.** Copy the contents of [always-on.md](always-on.md) into your `~/.claude/CLAUDE.md`. They are nine lines. Without them, the skill only loads for drafting tasks and won't change everyday chat answers.
+**2. The always-on lines.** Copy the contents of [always-on.md](always-on.md) into your `~/.claude/CLAUDE.md`. It's a heading and nine short rules. Without them, the skill only loads for drafting tasks and won't change everyday chat answers.
 
 ## Does it work?
 
@@ -50,7 +52,15 @@ It was tested on ten real writing tasks, three samples each, with and without th
 | Haiku | 18 | 7 | 5 |
 | Sonnet | 12 | 11 | 7 |
 
-It clearly helps Opus and Haiku. On Sonnet it's neutral. End-of-session summaries improved but are still the weakest form. It does not make writing pass an AI detector, which isn't what it's for.
+On Opus and Haiku the judges preferred the skill in about seven of ten decided pairs. On Sonnet it made no measurable difference. The pass bar set before testing was not met in full.
+
+Treat the numbers with some care, for three reasons:
+
+- **Tuning and scoring used the same tasks.** The skill was adjusted on the same ten tasks it was scored on.
+- **The skill's two reference files couldn't be read** during the test runs.
+- **Some forms are still weak:** decline emails, mid-session answers and end-of-session summaries.
+
+It does not make writing pass an AI detector, which isn't what it's for.
 
 ## Where the ideas come from
 
