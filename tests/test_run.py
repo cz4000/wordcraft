@@ -125,3 +125,34 @@ def test_parse_stream_records_reference_reads():
         json.dumps({"type": "result", "result": "done", "usage": {}}),
     ]
     assert run.parse_stream(lines).reference_reads == ["forms.md"]
+
+
+def test_dry_run_reads_a_named_task_set(tmp_path, capsys):
+    tasks = [{"id": "t0", "form": "x", "prompt": "p", "fixtures": [], "expects_trigger": True}]
+    (tmp_path / "evals" / "heldout").mkdir(parents=True)
+    (tmp_path / "evals" / "heldout" / "tasks.json").write_text(json.dumps(tasks))
+    run.main(["run", "--arms", "baseline", "--models", "opus", "--reps", "2", "--task-set", "heldout",
+              "--out", str(tmp_path / "out"), "--dry-run"], root=tmp_path)
+    assert "2 calls" in capsys.readouterr().out
+
+
+def test_load_task_prompt_reads_fixtures_from_the_task_set(tmp_path):
+    fx = tmp_path / "evals" / "heldout" / "fixtures"
+    fx.mkdir(parents=True)
+    (fx / "a.md").write_text("AAA")
+    task = {"prompt": "Do it", "fixtures": ["a.md"]}
+    assert run.load_task_prompt(task, tmp_path, task_set="heldout") == "Do it\n\n--- a.md ---\nAAA"
+
+
+def test_run_uses_the_given_skill_dir(tmp_path, monkeypatch):
+    tasks = [{"id": "t0", "form": "x", "prompt": "p", "fixtures": [], "expects_trigger": True}]
+    (tmp_path / "evals").mkdir()
+    (tmp_path / "evals" / "tasks.json").write_text(json.dumps(tasks))
+    (tmp_path / "evals" / "always-on").mkdir()
+    (tmp_path / "evals" / "always-on" / "CLAUDE.md").write_text("A")
+    seen = []
+    monkeypatch.setattr(run, "execute", lambda cmd, cwd: seen.append(cmd) or run.RunResult("ok", True, 1, 1))
+    skill = tmp_path / "v05"
+    run.main(["run", "--arms", "real", "--models", "opus", "--reps", "1",
+              "--skill-dir", str(skill), "--out", str(tmp_path / "out")], root=tmp_path)
+    assert seen[0][seen[0].index("--plugin-dir") + 1] == str(skill)

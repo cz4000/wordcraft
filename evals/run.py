@@ -126,21 +126,24 @@ def is_clean(text: str) -> bool:
     return not any(marker in lowered for marker in LEAK_MARKERS)
 
 
-def load_tasks(root: Path) -> list[dict]:
-    return json.loads((root / "evals" / "tasks.json").read_text())
+def load_tasks(root: Path, task_set: str = "") -> list[dict]:
+    # task_set "" is the original ten tasks; "heldout" is evals/heldout/
+    return json.loads((root / "evals" / task_set / "tasks.json").read_text())
 
 
-def load_task_prompt(task: dict, root: Path) -> str:
+def load_task_prompt(task: dict, root: Path, task_set: str = "") -> str:
     parts = [task["prompt"]]
     for name in task["fixtures"]:
-        content = (root / "evals" / "fixtures" / name).read_text()
+        content = (root / "evals" / task_set / "fixtures" / name).read_text()
         parts.append(f"--- {name} ---\n{content}")
     return "\n\n".join(parts)
 
 
 def run_all(root: Path, arms: list[str], models: list[str], reps: int,
-            task_ids: list[str], out: Path, dry_run: bool) -> None:
-    tasks = load_tasks(root)
+            task_ids: list[str], out: Path, dry_run: bool,
+            task_set: str = "", skill_dir: Path | None = None) -> None:
+    tasks = load_tasks(root, task_set)
+    skill_dir = skill_dir or root
     if task_ids != ["all"]:
         tasks = [t for t in tasks if t["id"] in task_ids]
     jobs = []
@@ -160,10 +163,10 @@ def run_all(root: Path, arms: list[str], models: list[str], reps: int,
 
     def do(job):
         model, arm, task, rep, path = job
-        prompt = load_task_prompt(task, root)
+        prompt = load_task_prompt(task, root, task_set)
         workdir = workdir_for(arm, always_on)
         try:
-            result = execute(build_command(arm, model, prompt, root), workdir)
+            result = execute(build_command(arm, model, prompt, skill_dir), workdir)
         finally:
             shutil.rmtree(workdir, ignore_errors=True)
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -212,12 +215,14 @@ def main(argv: list[str] | None = None, root: Path = ROOT) -> int:
     run_p.add_argument("--tasks", nargs="+", default=["all"])
     run_p.add_argument("--out", type=Path, required=True)
     run_p.add_argument("--dry-run", action="store_true")
+    run_p.add_argument("--task-set", default="", help="a folder under evals/ with its own tasks.json, e.g. heldout")
+    run_p.add_argument("--skill-dir", type=Path, help="plugin folder holding the skill version to test (default: this repo)")
     probe_p = sub.add_parser("probe", help="check the clean setup with three live calls")
     probe_p.add_argument("--model", default="haiku")
     args = parser.parse_args(argv)
     if args.command == "probe":
         return probe(root, args.model)
-    run_all(root, args.arms, args.models, args.reps, args.tasks, args.out, args.dry_run)
+    run_all(root, args.arms, args.models, args.reps, args.tasks, args.out, args.dry_run, args.task_set, args.skill_dir)
     return 0
 
 
