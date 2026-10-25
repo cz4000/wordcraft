@@ -1,0 +1,107 @@
+[
+  {
+    "id": "deposit-dispute-reply",
+    "form": "reply to letting agent",
+    "prompt": "Got this from the letting agent about our deposit. Most of it is rubbish. We had the carpets professionally cleaned the day before we moved out (DryRite, £135, I've got the receipt). The blu-tack marks are in their OWN check-in photos, photo 23 I think. We handed back both fobs and Sian who did the checkout signed the key sheet, I have a copy. The garden is shared with Flat A downstairs and was never ours to look after, it's not even mentioned in our tenancy agreement. And I'm pretty sure they're not allowed to charge an admin fee? Can you draft a reply. I'd let them have the wall if it gets this sorted, there was a scuff from getting the sofa out. Rest I want back.",
+    "fixtures": ["letting-agent-letter.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "application-covering-email",
+    "form": "job application email",
+    "prompt": "Applying for this, closes Sunday. The form has all the detail so I just need the short covering email that goes with it and my CV. My notes are below, sorry they're a mess. I really want this one",
+    "fixtures": ["job-ad.md", "cv-notes.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "nursing-reference",
+    "form": "reference for former employee",
+    "prompt": "One of my old mechanics, Priya Nandakumar, has asked me for a reference for her nursing degree (adult nursing at Calderbridge University). She worked at my bike shop from 2019 to 2023, full time, then part time for the last 6 months while she did her access course. The form asks: how long have you known the applicant and in what capacity, how reliable are they, how do they deal with people, and anything else that makes them suitable or unsuitable. Honestly she was brilliant. Customers asked for her by name, she trained up both our Saturday lads, and once she spent her whole lunch break fixing a wheelchair tyre for a bloke who'd come in by mistake looking for the chemist. Only blip was a couple of months in 2021 when her mum was ill and she was late a fair bit, but she told me straight away what was going on and made the hours up without being asked. I want to do right by her.",
+    "fixtures": [],
+    "expects_trigger": true
+  },
+  {
+    "id": "leaving-announcement",
+    "form": "team announcement",
+    "prompt": "need an email to the whole warehouse team (about 40 people) that Hollis is leaving at the end of the month. he's been our warehouse supervisor for 9 years, everyone likes him. he and his wife are moving to Portugal, he's happy for people to know that. Ines is covering his role from 1 Dec until we hire someone. leaving drinks Thurs 26th at the Anchor from 5. there's a card going round, it's in the office",
+    "fixtures": [],
+    "expects_trigger": true
+  },
+  {
+    "id": "ask-food-network-lead",
+    "form": "cold email asking a favour",
+    "prompt": "I want to email Femi Adeyemo-Clarke, who runs Southmere Food Network (they coordinate all the food banks in the county). I'm trying to set up a community fridge in our church hall in Pellow and I'd love 20 minutes on the phone with him, or failing that, for him to point me at whoever deals with getting surplus from the supermarkets. I've never met him. He spoke at the council's cost of living event in March and I was in the audience, that's the only connection. I know he must get loads of these. Can you help me write it?",
+    "fixtures": [],
+    "expects_trigger": true
+  },
+  {
+    "id": "ticketing-outage-report",
+    "form": "incident report for non-specialists",
+    "prompt": "Can you write up what happened on Monday with the app tickets? It's going to our board and to the passenger panel, neither of them are technical at all. Timeline from our ops channel is below. Gareth wants it by Friday.",
+    "fixtures": ["ops-channel-timeline.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "repair-cafe-appeal",
+    "form": "community fundraising and volunteer appeal",
+    "prompt": "Could you write the appeal for us? It's going in the Kestrel Lane residents' newsletter and I'll put it on our page as well. Facts are below. We do need the money but honestly we need volunteers more. Thank you so much, we've been putting this off for weeks!",
+    "fixtures": ["repair-cafe-facts.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "pta-newsletter-item",
+    "form": "school newsletter item",
+    "prompt": "Can you turn these notes from last night's PTA meeting into our bit for the autumn newsletter? It goes home in book bags and on the school app.",
+    "fixtures": ["pta-meeting-notes.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "board-paper-summary",
+    "form": "summary of a board paper for a decision",
+    "prompt": "I joined the board of our local leisure trust in the summer and this is on Thursday's agenda. I have to vote on it. I haven't had time to read it properly. What do I actually need to know before I walk in?",
+    "fixtures": ["board-paper-ashgrove-pool.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "memoir-chapter-summary",
+    "form": "chapter summary for a book group",
+    "prompt": "I'm hosting book group on Thursday. We're reading my neighbour Ruth's memoir, a chapter a month, and she'll be there! Half the group won't have read chapter 4 though. Can you write a summary I can send round on the group chat so everyone can join in?",
+    "fixtures": ["memoir-chapter-four.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "cobbler-profile",
+    "form": "local newspaper profile",
+    "prompt": "I write the People of Wexley slot for the Wexley Gazette, 500 to 600 words. This month it's Gerald, the cobbler on Corn Street who's closing up in December. My notes from talking to him on Tuesday are below. Can you write it up?",
+    "fixtures": ["cobbler-interview-notes.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "fridge-complaint",
+    "form": "complaint to a retailer",
+    "prompt": "This is the THIRD time I'm writing to Corrigan about this fridge and nothing has happened. Two days off unpaid, my neighbour wasted a whole day waiting in for them, and I'm STILL living out of a cool box two months later. I want my money back and I want paying for the days I lost. Everything that's happened is below. Write me something they can't just fob off with another auto reply.",
+    "fixtures": ["fridge-saga.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "credit-card-refund-question",
+    "form": "chat question about money",
+    "prompt": "quick q - if I return something I bought on my credit card, does the refund count as my payment for this month or do I still need to pay the minimum? statement's due friday",
+    "fixtures": [],
+    "expects_trigger": false
+  },
+  {
+    "id": "migration-status-update",
+    "form": "project status update for stakeholders",
+    "prompt": "Need the fortnightly update for the steering group, goes out at 3. Notes below.",
+    "fixtures": ["crm-project-notes.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "council-letter-plain",
+    "form": "plain rewrite of an official letter",
+    "prompt": "My mum got this letter from the council and she's in a real state about it, she thinks they're accusing her of something. She's 79 and has lived on her own since my dad died last year. Can you rewrite it so she can understand what it means and what she has to do?",
+    "fixtures": ["council-letter.md"],
+    "expects_trigger": true
+  }
+]

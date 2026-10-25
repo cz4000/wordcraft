@@ -28,8 +28,12 @@ def test_every_fixture_exists():
             assert (ROOT / "evals" / "fixtures" / name).is_file(), name
 
 
-def test_heldout_set_is_complete():
-    heldout = ROOT / "evals" / "heldout"
+import pytest
+
+
+@pytest.mark.parametrize("task_set", ["heldout", "heldout2"])
+def test_heldout_set_is_complete(task_set):
+    heldout = ROOT / "evals" / task_set
     tasks = json.loads((heldout / "tasks.json").read_text())
     assert len(tasks) == 15 and len({t["id"] for t in tasks}) == 15
     for t in tasks:
