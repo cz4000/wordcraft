@@ -45,3 +45,12 @@ def test_always_on_at_most_10_lines():
 
 def test_always_on_copies_match():
     assert (ROOT / "always-on.md").read_text() == (ROOT / "evals" / "always-on" / "CLAUDE.md").read_text()
+
+
+def test_exactly_one_installable_skill():
+    # `npx skills add` discovers every SKILL.md outside tests/; the probe's stand-in must stay hidden there
+    found = sorted(
+        str(p.relative_to(ROOT)) for p in ROOT.rglob("SKILL.md")
+        if not p.relative_to(ROOT).parts[0] in ("tests", ".git", ".superpowers")
+    )
+    assert found == ["skills/wordcraft/SKILL.md"]

@@ -28,7 +28,15 @@ It isn't perfect. "The extra time would let me cover the material properly" is a
 
 wordcraft has two parts: the skill, which Claude loads when it's drafting something, and a few always-on lines that shape every chat reply.
 
-**1. The skill.** In Claude Code:
+**1. The skill.** Install it for every project with the [skills CLI](https://github.com/vercel-labs/skills):
+
+```bash
+npx skills add cz4000/wordcraft -a claude-code -g
+```
+
+Leave out `-g` to install it for the current project only.
+
+If you'd rather install by hand, clone the repo and link the skill folder:
 
 ```bash
 git clone https://github.com/cz4000/wordcraft.git ~/code/wordcraft
@@ -38,7 +46,7 @@ git clone https://github.com/cz4000/wordcraft.git ~/code/wordcraft
 ln -s ~/code/wordcraft/skills/wordcraft ~/.claude/skills/wordcraft
 ```
 
-To try it for one session without installing, run `claude --plugin-dir ~/code/wordcraft` instead.
+To try it for one session without installing anything, run `claude --plugin-dir ~/code/wordcraft`.
 
 **2. The always-on lines.** Copy the contents of [always-on.md](always-on.md) into your `~/.claude/CLAUDE.md`. It's a heading and nine short rules. Without them, the skill only loads for drafting tasks and won't change everyday chat answers.
 
