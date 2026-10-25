@@ -1,0 +1,107 @@
+[
+  {
+    "id": "condolence-colleague",
+    "form": "condolence message to a colleague",
+    "prompt": "My colleague Tomasz's mum died on Saturday, quite suddenly from what I've heard. He's off for at least a fortnight. Someone's passing round a card for the team but I want to send him something of my own on Teams too, because we're actually quite close, we started the same week four years ago. I met his mum once, she came to the office Christmas do in 2023 and brought this enormous poppy seed cake and made everyone take a slice home. I've got no idea what to say to him.",
+    "fixtures": [],
+    "expects_trigger": true
+  },
+  {
+    "id": "salary-pushback",
+    "form": "salary negotiation email",
+    "prompt": "Got the offer through for the Brindlemoor job and it's lower than I was hoping. I do really want this one though, and I don't want to come across as greedy or blow it. Can you write my reply to Lena? Her email and my notes are below.",
+    "fixtures": ["salary-offer-and-notes.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "veg-box-changes-email",
+    "form": "customer update email",
+    "prompt": "Need an email to go out to all our customers about the changes from March. Notes from the ops meeting are below. We've had a bit of grumbling on Facebook lately so I'm a bit nervous about this one.",
+    "fixtures": ["greenhatch-ops-notes.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "retirement-speech",
+    "form": "retirement speech",
+    "prompt": "I'm doing a speech at Bernie's leaving do on Friday, about 3 minutes. It's in the school hall, staff plus a few parents and her family. These are all my scribbles, I'm hopeless at this kind of thing.",
+    "fixtures": ["bernie-speech-notes.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "new-starter-welcome",
+    "form": "first-week onboarding note",
+    "prompt": "New junior designer starts Monday, Priya. Can you turn these into a welcome note I can send her today?",
+    "fixtures": ["priya-week-one-notes.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "repair-cafe-grant",
+    "form": "grant application answer",
+    "prompt": "Doing the Wrenfield application for our repair café and I'm stuck on question 4. The question's at the top, then everything I've got. Can you draft an answer for me?",
+    "fixtures": ["wrenfield-q4-and-facts.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "group-trip-email",
+    "form": "group travel plan email",
+    "prompt": "can you write an email to the group with all the trip stuff in it? everyone keeps asking me the same questions on whatsapp and I'm losing my mind lol. Jas is on the email btw",
+    "fixtures": ["ardlow-weekend-bookings.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "cover-letter-feedback",
+    "form": "feedback on a cover letter",
+    "prompt": "My little sister asked me to look over her cover letter before she sends it on Friday. Can you give me some feedback I can pass on to her? She's 19, it's her first proper job application, and she takes criticism quite hard.",
+    "fixtures": ["freya-cover-letter.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "house-survey-summary",
+    "form": "summary of a building survey for a buyer",
+    "prompt": "We're buying a house and the survey's just come back. It's pages and pages of this. My partner Rob has flat out said he's not reading it. We've got a call with the estate agent on Thursday and need to decide whether to ask for money off, ask the seller to fix stuff, or just go ahead. Can you sum it up for us?",
+    "fixtures": ["linden-row-survey.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "story-for-set-texts",
+    "form": "short story summary for a teacher",
+    "prompt": "I'm head of English at a secondary school and I'm picking short stories for Year 9 next term. A colleague put this one on the shortlist but I've got twelve to get through and no time this week. What's it about, and would it work for 13 and 14 year olds? Anything I should know before I put it in front of a class?",
+    "fixtures": ["holding-for-owner.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "bus-cuts-letter",
+    "form": "letter to the editor",
+    "prompt": "I want to send something to the Courier about the bus cuts before the consultation closes on the 14th. My notes are a total mess, sorry. Can you write it up as a letter from me?",
+    "fixtures": ["bus-cuts-notes.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "reply-to-sister",
+    "form": "reply to a difficult family message",
+    "prompt": "I'm honestly shaking. This is from my sister last night after I told her I can't keep doing every other weekend at Dad's since I started the new job. Some of it is so unfair and some of it is true and I hate that. I've done FIVE weekends not three btw. I don't want to make things worse but I'm not just going to roll over either. Can you help me write back to her?",
+    "fixtures": ["claire-message.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "rice-in-fridge",
+    "form": "short everyday chat answer",
+    "prompt": "quick q, made a big batch of rice sunday night and it went in the fridge once it cooled down. still ok to eat on thursday?",
+    "fixtures": [],
+    "expects_trigger": false
+  },
+  {
+    "id": "pottery-studio-faq",
+    "form": "small business website FAQ",
+    "prompt": "Finally doing a proper website for the studio and I need an FAQ page. People ask me the same things every single day on Instagram. Notes below.",
+    "fixtures": ["thrownwell-faq-notes.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "podcast-newsletter-writeup",
+    "form": "podcast summary for a newsletter",
+    "prompt": "Can you do a write-up of this for the traders' association newsletter? It's the Back of the Shop episode with Des from Achterberg's. Most of our members run shops on the high street. I've pasted the main chunk of the transcript.",
+    "fixtures": ["back-of-the-shop-ep31.md"],
+    "expects_trigger": true
+  }
+]
