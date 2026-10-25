@@ -1,6 +1,6 @@
 # Results
 
-wordcraft was built and tested on 24 and 25 October 2026 with Claude Code 2.1.283. This page says what the tests found, including where the skill falls short. The raw outputs and judge logs (about 400 files) are kept out of the repo to keep it small. `evals/run.py` and `evals/judge.py` regenerate them.
+Wordcraft was built and tested on 24 and 25 October 2026 with Claude Code 2.1.283. This page says what the tests found, including where the skill falls short. The raw outputs and judge logs (about 400 files) are kept out of the repo to keep it small. `evals/run.py` and `evals/judge.py` regenerate them.
 
 ## The short version
 
