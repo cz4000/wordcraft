@@ -44,11 +44,11 @@ To try it for one session without installing, run `claude --plugin-dir ~/code/wo
 
 ## Does it work?
 
-It was tested on ten real writing tasks, three samples each, with and without the skill. Blind Opus judges compared every pair in both orders. The full method and every number are in [evals/results.md](evals/results.md).
+It was tested on ten real writing tasks, three samples each, with and without the skill. Blind Opus judges compared every pair in both orders. Opus figures are for the current version (v0.4.1). Sonnet and Haiku figures are for v0.4. The full method and every number are in [evals/results.md](evals/results.md).
 
 | Model | Judges preferred the skill | Preferred no skill | Ties |
 |---|---|---|---|
-| Opus | 17 | 7 | 6 |
+| Opus | 19 | 7 | 4 |
 | Haiku | 18 | 7 | 5 |
 | Sonnet | 12 | 11 | 7 |
 
@@ -57,7 +57,7 @@ On Opus and Haiku the judges preferred the skill in about seven of ten decided p
 Treat the numbers with some care, for three reasons:
 
 - **Tuning and scoring used the same tasks.** The skill was adjusted on the same ten tasks it was scored on.
-- **The skill's two reference files couldn't be read** during the test runs.
+- **The skill's two reference files are rarely used.** Claude opened them in 1 of 30 replies, so `SKILL.md` and the always-on lines do almost all the work.
 - **Some forms are still weak:** decline emails, mid-session answers and end-of-session summaries.
 
 It does not make writing pass an AI detector, which isn't what it's for.
