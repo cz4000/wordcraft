@@ -1,10 +1,11 @@
 # Principles
 
-Each principle answers a failure seen when Claude wrote without this skill, or one its tester named after reading blind samples. The ideas come from William Zinsser's *On Writing Well* (25th anniversary edition, 2001), the six rules at the end of George Orwell's essay "Politics and the English Language" (1946), and Charlie Euchner's "Ten Essential Rules for Writing Well" (*The Elements of Writing*, 2018, https://theelementsofwriting.com/ten-essential-rules-for-writing-well/), restated here in our own words. Page numbers are from Zinsser's edition.
+Each principle answers a failure seen when Claude wrote without this skill, or one its tester named after reading blind samples. The ideas come from William Zinsser's *On Writing Well* (25th anniversary edition, 2001), the six rules at the end of George Orwell's essay "Politics and the English Language" (1946), Charlie Euchner's "Ten Essential Rules for Writing Well" (*The Elements of Writing*, 2018, https://theelementsofwriting.com/ten-essential-rules-for-writing-well/), the military writing rule known as BLUF, and the SBAR hand-off format from health care, restated here in our own words. Page numbers are from Zinsser's edition.
 
 ## Contents
 
 - Start where the reader is
+- Bottom line up front, and SBAR for hand-offs
 - The reader knows nothing
 - Cut the padding, never the substance
 - Match the shape to the content
@@ -16,11 +17,28 @@ Each principle answers a failure seen when Claude wrote without this skill, or o
 
 ## Start where the reader is
 
-The opening has one job: tell the reader what this is and why it's worth their attention, so they want to go on (ch. 9, "The Lead and the Ending", pp. 55–56). In technical writing, begin with the one fact the reader needs before anything else makes sense, then widen out to what it means for them (ch. 15, p. 150). A list of changes with no frame around it reads like a stranger's notes. The end-of-task summary order in `SKILL.md` is this project's own. It is close to "bottom line up front" writing and to the SBAR format (situation, background, assessment, recommendation) used for handovers in hospitals.
+The opening has one job: tell the reader what this is and why it's worth their attention, so they want to go on (ch. 9, "The Lead and the Ending", pp. 55–56). In technical writing, begin with the one fact the reader needs before anything else makes sense, then widen out to what it means for them (ch. 15, p. 150). A list of changes with no frame around it reads like a stranger's notes.
 
 **Before:** "Changed `to_local_date()` to use `account.tz`. Added 6 test cases. `tzdata` isn't installed, so `test_dst.py` was skipped."
 
 **After:** "You asked why some customers in Sydney saw invoices dated a day early. Dates were converted in the server's time zone; they now use each account's own (`to_local_date()`), and six new tests cover it. The daylight-saving tests (`test_dst.py`) were skipped because a time-zone package (`tzdata`) isn't installed here, so run the full suite once before you merge."
+
+## Bottom line up front, and SBAR for hand-offs
+
+The US Army's correspondence rules (Army Regulation 25-50) ask writers to put the main point at the beginning, a habit known as BLUF: bottom line up front. Kabir Sehgal carried it into everyday email ("How to Write Email with Military Precision", *Harvard Business Review*, 2016). Decide what you want before you write. Open with the purpose, the action needed and how it affects the reader. Make the subject line say what the reader must do, and let background follow for those who want it.
+
+SBAR (situation, background, assessment, recommendation) was developed by Michael Leonard, Doug Bonacum and Suzanne Graham at Kaiser Permanente of Colorado, adapted from US Navy practice, and published by the Institute for Healthcare Improvement. It structures any message that needs someone's attention and action, especially a hand-off to someone who wasn't there:
+
+- **Situation:** what is happening, and how serious it is.
+- **Background:** only what bears on it.
+- **Assessment:** what you think the problem is, said as your judgement.
+- **Recommendation:** what you want done.
+
+It also asks you to check the facts yourself before you speak. The end-of-task summary in `SKILL.md` is this project's blend of the two: the bottom line first, then the SBAR parts.
+
+**Before:** "Looked into the slow checkout. The payments API averages 2.8 seconds, and `charge()` retries failed calls up to 5 times. I suspect the retries but haven't load-tested. Could drop retries to 2. Let me know what you think."
+
+**After:** "Checkout is slow, and the likely cause is our own retry setting rather than the payments service. (Situation) The service averages 2.8 seconds per call, and our code retries a failed call up to five times (`charge()`). (Background) I think the retries cause most of the delay, though I haven't tested that under load. (Assessment) I'd cut retries to two and watch checkout times for a day. Shall I make that change? (Recommendation)"
 
 ## The reader knows nothing
 
