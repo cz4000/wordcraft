@@ -221,22 +221,21 @@ Then copy [always-on.md](always-on.md) into your `~/.claude/CLAUDE.md`, so the r
 
 ## How it was tested
 
-I gave Claude Code ten everyday writing tasks in a clean setup and took three samples of each, with and without the skill. Blind Opus judges compared every pair twice, once in each order. When the two readings disagreed, the pair counts as a tie. The full method and results are in [evals/results.md](evals/results.md).
+I ran Claude Code headless in a clean setup, with and without the skill, and had blind Opus judges compare every pair twice, once in each order. When the two readings disagreed, the pair counted as a tie. The full method and every number are in [evals/results.md](evals/results.md).
 
-| Model | Judges preferred the skill (of 30 pairs) | Preferred no skill | Tie | Version |
-|---|---|---|---|---|
-| Opus | 21 | 4 | 5 | v0.5 |
-| Haiku | 18 | 7 | 5 | v0.4 |
-| Sonnet | 12 | 11 | 7 | v0.4 |
+The honest headline comes from a held-out test: 15 new writing tasks, written by an agent that never saw the skill. They covered customer replies, an apology, feedback on a proposal, a meeting recap, a policy email, a LinkedIn post, phone instructions for an elderly parent, a summary of a long report, a summary of a short story, a true story for a newsletter and a quick cooking question.
 
-On Opus, the judges preferred v0.5 in 21 of the 25 pairs that weren't ties, and it lost no task. On Haiku they preferred it in about seven of ten. On Sonnet it made no measurable difference. The bar set before testing (win 8 of 10 tasks on Opus, and break even on Sonnet and Haiku) was **not** met in full: v0.5 won 7 of 10 tasks on Opus and tied the other 3.
+| On new tasks (Opus, v0.5) | Pairs (of 30) |
+|---|---|
+| Judges preferred the skill | 12 |
+| Judges preferred plain Claude | 11 |
+| Tie | 7 |
 
-Read those numbers with four limits in mind:
+**Same quality, about a fifth shorter.** The skill's replies used 79% of the words, and the judges couldn't tell them apart on quality. Where plain Claude won, it was usually because it caught a real problem in the material, such as a date on the wrong weekday or a policy memo that contradicted itself, and flagged it before sending. The skill's rule against notes about the draft holds some of that back, and it's the next thing to fix.
 
-- I tuned the skill and scored it on the same ten tasks.
-- Claude almost never opens a skill's extra files, so v0.5 keeps all the working guidance in `SKILL.md`.
-- End-of-session summaries, the problem that started this project, now beat the baseline on Opus, but decline emails and articles written from a transcript only tie it.
-- Sonnet and Haiku haven't been retested since v0.4.
+On the ten tasks the skill was developed on, the judges preferred it in 21 pairs to 4 (v0.5, Opus), and it lost no task. Much of that margin came from tuning on those same tasks, which is why the held-out test matters. On Haiku (v0.4) the judges preferred the skill in about seven of ten pairs; on Sonnet (v0.4) it made no difference. Neither was run on the new tasks.
+
+I also tried two variations built on BLUF and SBAR (v0.6 and v0.7). Neither beat v0.5, so the skill ships with v0.5's text, and credits both as the practices its summary order draws on.
 
 It won't get text past an AI detector. Pangram rated all six texts it scanned 100% AI, with and without the skill. That isn't what it's for.
 
@@ -249,6 +248,8 @@ Every principle is restated in the skill's own words, with credit.
 - William Zinsser, *On Writing Well: The Classic Guide to Writing Nonfiction* (25th anniversary edition, 2001). The core of the skill: cut clutter; write for a reader who knows nothing of your work; start with the one fact they need, then widen out; write like a person; and "when you're ready to stop, stop."
 - George Orwell, the six rules at the end of "Politics and the English Language" (1946). Restated: no stale figures of speech; the short word over the long one; cut any word you can; active over passive; the everyday word over jargon; and break any rule rather than write something barbarous.
 - Charlie Euchner, ["Ten Essential Rules for Writing Well"](https://theelementsofwriting.com/ten-essential-rules-for-writing-well/), *The Elements of Writing* (2018). From it: one idea per paragraph; break a complex subject into pieces, in order; edit in passes, one problem at a time; read it aloud; and write for an intelligent reader who lacks your background.
+- BLUF ("bottom line up front"), from the US Army's correspondence rules (Army Regulation 25-50), and Kabir Sehgal's ["How to Write Email with Military Precision"](https://kabir.cc/how-to-write-email-with-military-precision/) (*Harvard Business Review*, 2016). The skill's summaries lead with the outcome.
+- SBAR (situation, background, assessment, recommendation), the hand-off format developed by Michael Leonard, Doug Bonacum and Suzanne Graham at Kaiser Permanente and published by the [Institute for Healthcare Improvement](https://www.ihi.org/resources/Pages/Tools/SBARToolkit.aspx). The skill's end-of-task summary order draws on it.
 - One convention is the project's own: describe a thing in plain words first, then give its technical name in brackets.
 
 ## Run the tests

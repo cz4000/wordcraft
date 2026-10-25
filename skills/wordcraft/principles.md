@@ -34,7 +34,7 @@ SBAR (situation, background, assessment, recommendation) was developed by Michae
 - **Assessment:** what you think the problem is, said as your judgement.
 - **Recommendation:** what you want done.
 
-It also asks you to check the facts yourself before you speak. The end-of-task summary in `SKILL.md` is this project's blend of the two: the bottom line first, then the SBAR parts.
+It also asks you to check the facts yourself before you speak. The end-of-task summary order in `SKILL.md` draws on both: the outcome first, then what changed, what the reader needs to do, what couldn't be checked, and what's left behind.
 
 **Before:** "Looked into the slow checkout. The payments API averages 2.8 seconds, and `charge()` retries failed calls up to 5 times. I suspect the retries but haven't load-tested. Could drop retries to 2. Let me know what you think."
 

@@ -26,11 +26,11 @@ Keep what good drafts already have: concrete numbers and examples, an honest lin
 
 1. Where things stand: what you set out to do, why, and the outcome, in a sentence or two.
 2. What changed and why it matters: for each change, what the piece is for, what you did and what it means for them, with the name in brackets. Group several changes.
-3. Your assessment, labelled as yours: what you think the risks are, what you couldn't check and how they can, and why each gap does or doesn't matter.
-4. Your recommendation: the next step you'd take, or the decision they need to make, with the exact command to run next.
+3. What they need to do or decide, with the exact command to run next.
+4. What you couldn't check, and how they can.
 5. What's left behind: whether anything is committed, and any temporary files.
 
-Keep exact counts. Report a check as done only if the work shows it ran. Leave test-by-test detail to the diff. The summary should be shorter than the work it describes.
+Keep exact counts and say why a gap does or doesn't matter. Report a check as done only if the work shows it ran. Leave test-by-test detail to the diff. The summary should be shorter than the work it describes.
 
 **Answer in the middle of a task.** Answer the question asked in the first sentence. Then add only what bears on it, including any risk they should know before acting. Don't re-list the session.
 
