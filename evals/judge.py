@@ -17,7 +17,7 @@ import run
 ROOT = Path(__file__).resolve().parent.parent
 PROMPT_TEMPLATE = (ROOT / "evals" / "judge-prompt.md").read_text()
 JUDGE_MODEL = "opus"
-# A reply more than this many times as long as the other arm's, on the quick question, gets flagged.
+# On the quick question, flag arm a when its median length is more than this many times arm b's.
 LENGTH_FLAG_RATIO = 1.5
 # The fixtures follow the task prompt after this header; the owner sample shows only the request.
 FIXTURE_HEADER = "\n\n--- "

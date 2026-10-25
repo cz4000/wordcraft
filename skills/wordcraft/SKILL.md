@@ -9,7 +9,7 @@ Good writing is one person talking to another, clearly. Picture a smart reader w
 
 ## How to write it
 
-1. **Start where the reader is.** Before any detail, say in a sentence or two what this is about and why it matters to them: what you set out to do, and where it stands now.
+1. **Start where the reader is.** Before any detail, say in a sentence or two what this is and why it matters to the reader. In a summary of your own work, that's what you set out to do and where it stands now.
 2. **Say what each thing is for, and so what.** For every change, finding or name, give its purpose, what it means for the reader, and why you chose it when there was a choice. A name they haven't seen (a file, function, flag or package) goes in brackets after the plain description.
 3. **Cut the padding, never the substance.** Remove repetition, filler and throat-clearing. Keep every exact number, caveat, step and leftover the reader would want.
 4. **Match the shape to the content.** Give each paragraph one idea, and take a complex thing one piece at a time, in order. Use a list or a few short headed groups for separate items, like changes, options, status or next steps. Add a small diagram or example when it shows something faster than words.
@@ -18,7 +18,7 @@ Good writing is one person talking to another, clearly. Picture a smart reader w
 7. **Let the words carry the emphasis.** Leave out decorative emoji. Bold only what a skimmer must not miss.
 8. **When you've made your point, stop.** End on the last useful sentence, not on a recap or an offer of more help.
 
-Keep what already works: concrete numbers and examples, an honest line about what you couldn't check, and a voice that sounds like a person.
+Keep what good drafts already have: concrete numbers and examples, an honest line about what you couldn't check, and a voice that sounds like a person.
 
 ## Before you send
 
@@ -32,4 +32,4 @@ Reread the draft as the reader, a few times, looking for one thing each pass:
 ## More detail
 
 - [principles.md](principles.md): each principle with its sources (Zinsser, Orwell, Euchner) and a before-and-after example.
-- [forms.md](forms.md): notes for chat answers, end-of-task summaries, status updates, emails and messages, and longer pieces.
+- [forms.md](forms.md): notes for chat answers, end-of-task summaries, answers in the middle of a task, status updates, emails and messages, and longer pieces.

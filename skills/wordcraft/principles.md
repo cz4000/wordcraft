@@ -20,7 +20,7 @@ The opening has one job: tell the reader what this is and why it's worth their a
 
 **Before:** "Changed `to_local_date()` to use `account.tz`. Added 6 test cases. `tzdata` isn't installed, so `test_dst.py` was skipped."
 
-**After:** "You asked why some customers in Sydney saw invoices dated a day early. It's fixed: dates are now converted using each account's own time zone instead of the server's (`to_local_date()`). Most tests passed. The ones covering daylight-saving changes couldn't run here, so it's worth one full run before you merge."
+**After:** "You asked why some customers in Sydney saw invoices dated a day early. Dates were converted in the server's time zone; they now use each account's own (`to_local_date()`), and six new tests cover it. The daylight-saving tests (`test_dst.py`) were skipped because a time-zone package (`tzdata`) isn't installed here, so run the full suite once before you merge."
 
 ## The reader knows nothing
 
@@ -42,9 +42,9 @@ The other half of the rule: don't explain what the reader already knows (ch. 10,
 
 Most first drafts can lose a large share of their words without losing any information, and losing information is the only real test of a cut (ch. 3, "Clutter", pp. 16–17). Decide what the reader should take away, and resist the urge to cover everything (ch. 8, "Unity", pp. 52–53). Orwell's version is blunter: if a word can go, cut it. What goes is repetition and throat-clearing. What stays is every fact, caveat, step and loose end the reader will need, such as the temporary files left on their machine or whether anything was committed.
 
-**Before:** "As mentioned above, the fix, which I described earlier, should now work correctly in all of the cases we discussed."
+**Before:** "As mentioned above, the fix, which I described earlier, should now work correctly in all of the cases we discussed. Just so you know, I haven't committed anything yet, and I also left a copy of the demo database over in `/tmp/demo.db`, which you can delete whenever you like."
 
-**After:** "The fix works for every case above. Nothing is committed yet, and I left a copy of the demo database in `/tmp/demo.db` that you can delete."
+**After:** "The fix should handle every case above. Nothing is committed yet, and a copy of the demo database is in `/tmp/demo.db` for you to delete."
 
 ## Match the shape to the content
 
@@ -54,21 +54,25 @@ A paragraph is a unit of thought, and chopping one line of reasoning into labell
 
 **After:** "Pages were slow because the cache expired after a minute instead of an hour. I fixed the setting, so most pages now load straight from the cache."
 
-**Before** (separate items, run together as prose): "The search reindex finished Monday, and the iOS build is stuck waiting on a new signing certificate, and the pricing page goes live on the 3rd, and I'm off next Wednesday."
+**Before** (separate items, run together as prose): "The search reindex finished Monday, and the iOS build is stuck waiting on a new signing certificate that only an admin can renew, and the pricing page goes live on the 3rd, and I'm off next Wednesday."
 
-**After:** "**Needs a decision:** the iOS build is stuck until someone with admin access renews the signing certificate. Who should do it?" Then "**Done:** search reindex, finished Monday." Then "**Coming:** pricing page live on the 3rd. I'm off next Wednesday."
+**After:**
+
+- **Blocked:** the iOS build, until an admin renews the signing certificate.
+- **Done:** search reindex, finished Monday.
+- **Coming up:** pricing page live on the 3rd. I'm off next Wednesday.
 
 ## Write to this person about this situation
 
 A letter that sounds like a person beats one in an institutional voice (ch. 16, "Business Writing", p. 171), and writing that has humanity and warmth is what holds a reader (ch. 1, p. 5). Reaching for the nearest stock phrase marks writing as hack work (ch. 6, "Words", pp. 33–35). Orwell's first rule says the same about figures of speech: if you're used to seeing it in print, don't use it. Reading the draft aloud helps you hear stock phrases (ch. 20, pp. 236–237), and so does editing in passes, hunting one kind of problem at a time (Euchner, rules 8–9). Generic warmth ("Thanks for getting in touch", "Looking forward to it") is still stock. The cure is specifics: answer what this person said, in the user's own voice. The specifics have to be real. When the user hasn't given a reason, a date or a feeling, don't supply one to make the message sound personal. Leave it out, or flag it as a guess. Plain is not the same as breezy, though. Folksy, pal-to-pal writing is worse than plain English (ch. 20, pp. 234–235).
 
-**Before:** "Thanks so much for reaching out! I'd be happy to help. Looking forward to it!"
+**Before** (the user said: yes to the review panel, March and May only, April clashes with a launch): "Thanks so much for reaching out! I'd be happy to help. Looking forward to it!"
 
 **After:** "Yes, I'd like to join the review panel. I can do the March and May sessions, but April clashes with a product launch. Is it all right to miss that one?"
 
 ## Stay true to the material
 
-One invented or inflated statement makes readers doubt everything after it (ch. 10, "Credibility", p. 78). The real material is more interesting than anything you add to it, and colour is part of the fact, not paint on top (pp. 89–90). Claims about your own work count too: saying you confirmed, ran or shipped something the record doesn't show is an invention like any other. Facts from your own knowledge are additions too. In a piece built from a source, leave them out, or flag them in one line after the piece so the reader can check them.
+One invented or inflated statement makes readers doubt everything after it (ch. 10, "Credibility", p. 78). The real material is more interesting than anything you add to it, and color is part of the fact, not paint on top (pp. 89–90). Claims about your own work count too: saying you confirmed, ran or shipped something the record doesn't show is an invention like any other. Facts from your own knowledge are additions too. In a piece built from a source, leave them out, or flag them in one line after the piece so the reader can check them.
 
 **Before:** a congratulations note says "Congratulations on the promotion!" when the request only says the person moved to a new team.
 
@@ -84,7 +88,7 @@ The same goes for decorative emoji and bold on every line. Let word order and po
 
 **Before:** "**⚠️ Heads up:** the **iOS build** is **blocked** 🚧"
 
-**After:** "**Needs a decision:** the iOS build is blocked until the signing certificate is renewed, and only an admin can do that."
+**After:** "**Blocked:** the iOS build, until the signing certificate is renewed."
 
 ## When you've made your point, stop
 

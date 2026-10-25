@@ -78,7 +78,7 @@ def test_book_never_tracked():
 - Produces: `ARMS = ("baseline", "real", "forced")`
 - Produces: `build_command(arm: str, model: str, prompt: str, repo_root: Path) -> list[str]`
   - all arms: `claude -p <prompt> --model <model> --output-format stream-json --verbose` plus the clean-setup flags the spike settles on (Step 1)
-  - `real`: adds `--plugin-dir <repo_root>` and `--add-dir <repo_root>/evals/always-on`
+  - `real`: adds `--plugin-dir <repo_root>` and `--add-dir <repo_root>/evals/always-on` *(as built: the always-on lines go in a temp folder's CLAUDE.md; see the `run.py` docstring)*
   - `forced`: like `real`, but the prompt starts with the skill's slash command (`/wordcraft:wordcraft`, confirmed in Step 1)
 - Produces: `@dataclass RunResult(text: str, skill_triggered: bool, input_tokens: int, output_tokens: int)` and `parse_stream(lines: list[str]) -> RunResult`. `skill_triggered` is true when the stream holds a `Skill` tool call naming `wordcraft`.
 - Produces: the CLI `python evals/run.py run --arms baseline real --models opus --reps 3 --tasks all --out evals/runs/<name> [--dry-run]`. It writes `<out>/<model>/<arm>/<task_id>/rep<k>.json` (the RunResult plus the prompt). `--dry-run` prints the number of calls and runs none.
@@ -108,7 +108,7 @@ The ten task ids, which are fixed. The builder writes the prompt text:
 |---|---|---|
 | `quick-question` | one-line technical question | false |
 | `session-summary` | end-of-session summary to a user who was away | true |
-| `mid-session-answer` | answer a user question that touches internal names | true |
+| `mid-session-answer` | answer a user question that touches internal names | true *(changed to false: the always-on lines cover chat answers)* |
 | `pr-description` | PR description from `session-diff.patch` | true |
 | `email-reply` | reply to `email-in.md` | true |
 | `email-decline` | say no to a request, kindly | true |
@@ -202,7 +202,7 @@ Content requirements (from the design; the builder words them):
 - [ ] **Step 3: Iterate.** For every task `real` loses or ties, read both outputs and the judge's reasons. Change the skill and test the new wording with a micro-test: 5+ samples per wording, plus a no-skill control, reading every output. Rerun into `iter<N+1>`. Stop when Opus passes, or after 4 iterations with no gain, and report to the owner.
 - [ ] **Step 4: Sonnet and Haiku.** Run `baseline` and `real` with 3 reps each (dry run, then gate 2: 120 calls, plus 120 judge calls), then judge. Pass: wins ≥ losses on each model.
 - [ ] **Step 5: Owner sample.** Make an `owner_sample` of 10 Opus pairs, `real` vs `baseline`. The owner picks blind. Pass: the owner's picks match the judges on at least 8 of 10. While reading, the owner also looks out for over-explaining and bracket clutter (Review Focus 4).
-- [ ] **Step 6: AI-detection score (owner request, 2026-10-24).** Create `evals/detect.py` with `detect_score(text: str) -> float` (Pangram API, read the current API docs first; key from the `PANGRAM_API_KEY` environment variable, never committed) and a CLI `python evals/detect.py --runs <dir> --model opus [--dry-run]` that scores every output of at least 75 words and prints the mean and median AI score per arm. Tests use a fake scorer: `test_short_outputs_skipped`, `test_scores_aggregated_per_arm`. Owner gate 2 before any live scan (the dry run prints the count). This is a reported measure, not part of the pass bar: it measures how AI-like text looks, not how well it reads.
+- [ ] **Step 6: AI-detection score (owner request, 2026-10-24).** *(Not built: six texts were scanned by hand; see `evals/pangram/round3-opus.md`.)* Create `evals/detect.py` with `detect_score(text: str) -> float` (Pangram API, read the current API docs first; key from the `PANGRAM_API_KEY` environment variable, never committed) and a CLI `python evals/detect.py --runs <dir> --model opus [--dry-run]` that scores every output of at least 75 words and prints the mean and median AI score per arm. Tests use a fake scorer: `test_short_outputs_skipped`, `test_scores_aggregated_per_arm`. Owner gate 2 before any live scan (the dry run prints the count). This is a reported measure, not part of the pass bar: it measures how AI-like text looks, not how well it reads.
 - [ ] **Step 7:** Write `results.md` with the per-task table for each model, the Pangram scores per arm, the trigger rates, the owner's agreement and three short before-and-after excerpts. Commit: `docs(evals): results`.
 
 ### Task 8: Install, publish

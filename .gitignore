@@ -1,7 +1,7 @@
-.private-words
 *.pdf
-book.txt
-evals/runs/
-__pycache__/
+.private-words
 .pytest_cache/
 .superpowers/
+__pycache__/
+book.txt
+evals/runs/

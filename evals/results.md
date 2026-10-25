@@ -1,14 +1,14 @@
 # Results
 
-wordcraft was built and tested between 24 and 25 October 2026 with Claude Code 2.1.283. This page says what the tests found, including where the skill falls short.
+wordcraft was built and tested on 24 and 25 October 2026 with Claude Code 2.1.283. This page says what the tests found, including where the skill falls short. The raw outputs and judge logs (about 400 files) are kept out of the repo to keep it small. `evals/run.py` and `evals/judge.py` regenerate them.
 
 ## The short version
 
-With wordcraft, blind judges preferred Opus's and Haiku's writing in about seven of ten decided pairs. The gains were largest on announcements, explanations, status updates and pull request descriptions. On Sonnet the skill made no measurable difference. The bar set before testing was **not** met in full.
+With wordcraft, blind judges preferred Opus's and Haiku's writing in about seven of ten decided pairs. In the latest tests, the skill won the explanation and the announcement on every model. On Sonnet it made no measurable difference. The bar set before testing was **not** met in full.
 
 Three limits apply to every number here:
 
-- **Tuned and scored on the same tasks.** Each version was adjusted after seeing results on the same ten tasks it was scored on, with no held-out tasks, so the gains may not carry over in full to new writing.
+- **Tuned and scored on the same tasks.** Each version was adjusted after seeing results on the same ten tasks it was scored on, with no held-out tasks. The gains may not carry over in full to new writing.
 - **The reference files are rarely read.** In rounds 1 to 4 the test setup blocked `principles.md` and `forms.md`. After the fix (v0.4.1), Claude opened them in only 1 of 30 replies, so in practice the skill is `SKILL.md` plus the always-on lines.
 - **Thirty pairs are ten tasks.** Each run's 30 pairs are 10 tasks × 3 samples, not 30 independent cases.
 
@@ -16,17 +16,40 @@ The skill does not make Claude's writing look human to an AI detector, and wasn'
 
 ## How it was tested
 
-- **Ten real writing tasks** (`evals/tasks.json`): a quick chat question, an end-of-session summary, a mid-session question, a pull request description, two emails, an explanation for a non-technical manager, a status update, a team announcement and a short article. All source material is public: a real bug fix on the open-source `humanize` library and a Federal Reserve press conference transcript.
-- **A clean setup.** Claude ran headless with none of the tester's own instructions, skills, plugins or MCP servers (`evals/run.py`). "With the skill" means the shipped setup: the always-on lines as `CLAUDE.md` plus the skill installed and left to load on its own.
+- **Ten everyday writing tasks** (`evals/tasks.json`):
+  - a quick chat question;
+  - an end-of-session summary;
+  - a mid-session question;
+  - a pull request description;
+  - two emails;
+  - an explanation for a non-technical manager;
+  - a status update;
+  - a team announcement;
+  - a short article.
+
+  The two long sources are public: a real bug fix on the open-source `humanize` library, and a Federal Reserve press conference transcript. The incoming email and the status notes were written for the test.
+- **A clean setup.** Claude ran headless with none of the tester's own instructions, skills, plugins or MCP servers (`evals/run.py`). "With the skill" means the shipped setup: the always-on lines as `CLAUDE.md`, plus the skill installed and left to load on its own.
 - **Three samples per task**, with and without the skill.
 - **Blind judges.** Opus saw each pair in both orders and picked the reply the requester would rather receive. A split decision counts as a tie. The judge prompt never mentions the skill (`evals/judge-prompt.md`).
-- **The owner's own blind reads** of 10 pairs after round 1 and 8 pairs after round 3.
+- **The owner's own blind reads:** 10 pairs after round 1, and 8 of 10 pairs after round 3 (the owner skipped two).
+
+Rounds 1 to 5 tested v0.1, v0.2, v0.3, v0.4 and v0.4.1. Round 1 also ran a third version that forced the skill on. The judges preferred it in 10 pairs and the baseline in 14, with 6 ties, so it was dropped.
 
 ## What the baseline got wrong
 
-From 30 Opus outputs without the skill (`evals/baseline-findings.md`): answers far longer than the question needed, chat formatted like a document, internal names the reader had never seen, stock phrases, notes about the draft after the draft, two invented details, and decorative emoji. It already led with the answer and wrote plainly, so the skill leaves those alone.
+From 30 Opus outputs without the skill (`evals/baseline-findings.md`):
 
-## Results by round
+- answers far longer than the question needed;
+- chat formatted like a document;
+- internal names the reader had never seen;
+- stock phrases;
+- notes about the draft after the draft;
+- two invented details;
+- decorative emoji.
+
+It already led with the answer and wrote plainly, so the skill leaves those alone.
+
+## Results by version
 
 Pairs where the judges preferred one version in both orders, out of 30 per run. The p-value is a two-sided sign test on the decided pairs.
 
@@ -44,10 +67,24 @@ Pairs where the judges preferred one version in both orders, out of 30 per run. 
 
 What changed between versions:
 
-- **v0.2:** said what each change is for and why it matters. Matched the shape to the content (lists and headed groups for separate items, paragraphs for reasoning). Kept every fact the reader needs. Added Orwell's six rules.
-- **v0.3:** never invent a specific to sound personal. Flag outside facts. Added Euchner's ten rules.
-- **v0.4:** never claim a check, fix or release the work doesn't show. Never mention the skill in a reply.
-- **v0.4.1:** after the final review. The always-on lines say "answer first", and the description no longer claims chat questions. The test setup now lets the skill read its reference files. Opus only.
+- **v0.2:**
+  - Say what each change is for and why it matters.
+  - Match the shape to the content: lists and headed groups for separate items, paragraphs for reasoning.
+  - Keep every fact the reader needs.
+  - Added Orwell's six rules.
+- **v0.3:**
+  - Never invent a specific to sound personal.
+  - Flag outside facts.
+  - Added Euchner's ten rules.
+- **v0.4:**
+  - Never claim a check, fix or release the work doesn't show.
+  - Never mention the skill in a reply.
+- **v0.4.1:**
+  - The always-on lines say "answer first".
+  - The skill's description stops claiming chat questions, which the always-on lines now cover.
+  - The test setup lets the skill read its reference files.
+  - Only Opus was rerun.
+- **v0.4.2:** v0.4.1 plus wording fixes from a final edit. It fixes three examples in `principles.md` that broke their own principle, and clarifies two lines of `SKILL.md` and one always-on line. It has not been tested separately.
 
 ## Results by task
 
@@ -60,31 +97,31 @@ A task is a win when the skill's version was preferred in more of its three samp
 | mid-session-answer | tie | loss | win | loss | win |
 | pr-description | win | win | win | tie | win |
 | email-reply | win | win | win | win | tie |
-| email-decline | win | **loss** | loss | tie | **loss** |
+| email-decline | win | **loss** | **loss** | tie | **loss** |
 | explain-concept | win | win | win | win | win |
 | status-update | win | win | win | loss | win |
 | announce-change | win | win | win | win | win |
 | article-from-source | win | tie | loss | loss | tie |
 
-The decline email lost on Opus (v0.4 and v0.4.1) and Haiku, after winning on Opus in v0.1 to v0.3. The mid-session answer lost on Opus v0.4 and Sonnet, and won on Opus v0.4.1 after the "answer first" fix. The end-of-session summary lost again on Opus v0.4.1. Only the explanation and the announcement won on every model.
+The decline email lost on Opus (v0.4 and v0.4.1) and on Haiku, after winning on Opus in v0.1 and v0.3 (v0.2 tied). The mid-session answer lost on Opus v0.4 and Sonnet, then won on Opus v0.4.1 after the "answer first" fix. The end-of-session summary and the article lost on Opus v0.4.1. Only the explanation and the announcement won in every column above.
 
 ## Against the pass bar set before testing
 
-| Condition | v0.3 | v0.4 |
-|---|---|---|
-| Opus wins at least 8 of 10 tasks | ✅ 8–1–1 | ❌ 6–2–2 |
-| Sonnet wins at least as many tasks as it loses | ❌ 4–5–1 | ✅ 4–4–2 |
-| Haiku wins at least as many tasks as it loses | ✅ 7–3 | ✅ 6–2–2 |
-| Owner's blind picks match the judges on at least 8 of 10 pairs | ❌ 4 of 6 picked pairs | not re-read |
+| Condition | v0.3 | v0.4 | v0.4.1 |
+|---|---|---|---|
+| Opus wins at least 8 of 10 tasks | ✅ 8–1–1 | ❌ 6–2–2 | ❌ 7–3–0 |
+| Sonnet wins at least as many tasks as it loses | ❌ 4–5–1 | ✅ 4–4–2 | not rerun |
+| Haiku wins at least as many tasks as it loses | ✅ 7–3–0 | ✅ 6–2–2 | not rerun |
+| Owner's blind picks match the judges on at least 8 of 10 pairs | ❌ 4 of 6 picked pairs | not re-read | not re-read |
 
-Opus v0.4.1, the shipped version, went 7–3–0 by task: short of 8 wins, though its pair result (19 to 7, p=0.03) is the strongest of any Opus round.
+**No version meets every condition.** With three samples per task, one sample can flip a task's verdict. The Opus pair results for v0.3, v0.4 and v0.4.1 (19, 17 and 19 better pairs) are within that noise. v0.4.1's result (19 to 7, p=0.03) is second only to v0.3's (19 to 5, p=0.007).
 
-**Neither version meets every condition.** With three samples per task, one sample can flip a task's verdict, and the Opus difference between v0.3 and v0.4 (19 against 17 better pairs) is within that noise. v0.4 ships because it is as good on Opus, better on Haiku, no longer worse on Sonnet, and its two new rules are right regardless of score.
+v0.4 replaced v0.3 because it lost less on Sonnet, and because its two new rules, no invented checks and no mention of the skill, fix real faults. v0.4.1 then fixed the conflicts the final review found. v0.4.2 ships.
 
 ## The owner's blind reads
 
-- **Round 1:** the owner preferred the skill's writing in 7 of 10 pairs and the baseline's formatting in every pair where they split their pick. That finding drove v0.2.
-- **Round 3:** skill 4, baseline 2, unsure 2. The end-of-session summary was one of the two "unsure" pairs.
+- **Round 1:** the owner preferred the skill's writing in 7 of 10 pairs. Where they liked one reply's writing and the other's formatting, they preferred the baseline's formatting every time. That finding drove v0.2.
+- **Round 3:** skill 4, baseline 2, unsure 2, out of the 8 pairs read. The end-of-session summary was one of the two "unsure" pairs.
 
 ## Does the skill load when it should?
 
@@ -96,30 +133,24 @@ The always-on lines cover chat answers, and the skill loads for drafting. Across
 | Sonnet | 22 of 24 |
 | Haiku | 20 of 24 |
 
-Five of the six misses were on the end-of-session summary. That fails the plan's own loading check, which asks for at least 2 of 3 samples on every drafting task. Haiku loaded the skill for the summary in 0 of 3 samples, and Sonnet in 1 of 3. So Haiku's summary loss happened without the skill loaded at all.
+Five of the six misses were on the end-of-session summary. That fails the plan's own loading check, which asks for at least 2 of 3 samples on every drafting task. Haiku loaded the skill for the summary in 0 of 3 samples, and Sonnet in 1 of 3, so Haiku's summary loss happened without the skill loaded at all. In round 5 (Opus, v0.4.1), it loaded on all 24 drafting samples.
 
 ## AI detection (Pangram)
 
-Six texts from round 3 were scanned by hand with Pangram's free checker: three tasks, each with and without the skill. All six scored 100% AI (`evals/pangram/round3-opus.md`; the word counts there are Pangram's own, which count formatting marks too). Pangram detects who wrote a text, not how well it reads.
+Six texts from round 3 were scanned by hand with Pangram's free checker: three tasks, each with and without the skill. All six scored 100% AI (`evals/pangram/round3-opus.md`). The word counts there are Pangram's own, which include formatting marks. Pangram detects who wrote a text, not how well it reads.
 
-## Before and after (Opus, round 4)
+## Before and after (Opus, v0.4.1)
 
-**Reply email.** Without the skill: 207 words, opening with "Here's a draft:", thanking the colleague, offering a fallback slot the user never mentioned, and ending with a paragraph explaining the draft. With the skill: 75 words.
+**Team announcement.** Without the skill: 260 words, with a date it calculated itself, a 🙏, and a procedure for admin overrides that nobody asked for. With the skill: 150 words that open with what changes, give the reason in two sentences, and end with what to do in an emergency. Two notes follow the draft, and one of them flags the draft's last sentence as an addition.
 
-> Hi Dana, Thanks for asking. I'd be glad to speak at Riverside DevConf. If one of the 45-minute slots on 15 May is still free, I'd prefer that. The extra time would let me cover the material properly. I can't get a title and abstract to you by 20 February, though. Would 27 February work, or is that too late for publishing the schedule?
-
-The skill's version still breaks one of its own rules. "The extra time would let me cover the material properly" is a reason the user never gave.
-
-**Quick git question.** Without the skill: 323 words, three headings, two diagrams and a four-row table. With the skill: 240 words that keep the two diagrams the readers valued and drop the reference-page scaffolding.
-
-**Team announcement.** Without the skill: 260 words, with a date it calculated itself, a 🙏, and a rule for admin overrides that nobody asked for. With the skill: 159 words that open with what changes and why, and one line flagging the missing detail: who to contact for an emergency override.
+**Reply email.** Without the skill: 207 words. It opens with "Here's a draft:", thanks the colleague, offers a fallback slot the user never mentioned, and ends with a paragraph explaining the draft. With the skill, the replies are 78 to 162 words. Two have no note after the draft. The third ends with one that flags its added reason. But all three open with "Thanks for getting in touch", and all three give a reason for wanting the longer slot that the user never stated. The baseline invented one too ("go through the examples properly instead of rushing them").
 
 ## Known gaps
 
-- **Invented reasons in emails.** All three Opus v0.4 replies to the speaker invitation add a reason the user never gave, and none flags it. The decline email adds invented details too, which may explain its losses.
-- **Uneven forms.** The decline email, the mid-session answer and the end-of-session summary are the weakest. The summary also fails the loading check on Sonnet and Haiku.
-- **Stock openers survive.** "Heads up:" still opens most announcements, and one reply opens "Thanks for getting in touch".
+- **Invented reasons in emails.** All three v0.4.1 replies to the speaker invitation add a reason the user never gave, and only one flags it. The decline email adds invented details too, which may explain its losses.
+- **Uneven forms.** The decline email, the end-of-session summary and the article are the weakest. On Sonnet and Haiku, the summary also fails the loading check.
+- **Stock openers survive.** "Heads up:" no longer opens the Opus announcements, but all three invitation replies open "Thanks for getting in touch".
 - **Sonnet** doesn't measurably benefit.
 - **The reference files barely reach the model.** In 29 of 30 v0.4.1 replies, Claude worked from `SKILL.md` alone, so the summary structure and the status-update form in `forms.md` rarely apply. Moving the key form notes into `SKILL.md` is the obvious next step, and it would need its own test round.
-- **Sonnet and Haiku weren't rerun on v0.4.1.**
+- **Sonnet and Haiku weren't rerun on v0.4.1, and v0.4.2 wasn't tested.**
 - **Small samples.** Three samples per task, ten tasks, and an owner read of 18 pairs in total.
