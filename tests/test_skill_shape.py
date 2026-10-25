@@ -16,9 +16,11 @@ def split_frontmatter(text: str) -> tuple[dict, str]:
     return fields, body
 
 
-def test_skill_md_under_500_words():
+def test_skill_md_under_1000_words():
+    # Claude opened the reference files in 1 of 30 replies (round 5), so the form
+    # guidance lives in SKILL.md; Anthropic's own limit is 500 lines
     _, body = split_frontmatter(SKILL_MD.read_text())
-    assert len(body.split()) < 500
+    assert len(body.split()) < 1000
 
 
 def test_frontmatter_name_and_description():
