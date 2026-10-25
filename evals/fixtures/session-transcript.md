@@ -33,7 +33,7 @@ src/humanize/filesize.py:38:def naturalsize(
 
 ```
 commit 7574e0cc377d80db0d2756fc2c5e0b8799a6f8b4
-Author: Vincent Gao <gaobing1230@gmail.com>
+Author: [a contributor]
 Date:   Tue Jun 30 17:34:12 2026 +0200
 
     Carry `metric()` to the next SI prefix when rounding reaches 1000 (#328)
@@ -196,8 +196,8 @@ The event loop scope for asynchronous fixtures will default to the fixture cachi
   warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
 
 ==================================== ERRORS ====================================
-[31m[1m__________________ ERROR collecting src/humanize/__init__.py ___________________[0m
-[31mImportError while importing test module '~/code/humanize/src/humanize/__init__.py'.
+__________________ ERROR collecting src/humanize/__init__.py ___________________
+ImportError while importing test module '~/code/humanize/src/humanize/__init__.py'.
 Hint: make sure your test modules/packages have valid Python names.
 Traceback:
 /opt/anaconda3/lib/python3.13/importlib/__init__.py:88: in import_module
@@ -247,28 +247,28 @@ File created successfully at: ~/code/humanize/src/humanize/_version.py (file sta
 *[Bash: python -m pytest -q -p no:cacheprovider --ignore=tests/test_i18n.py --ignore=tests/test_time.py --ignore=src/humanize/time.py --ignore=src/humanize/i18n.py 2>&1 | tail -15]*
 
 ```
-[31mERROR[0m tests/test_benchmarks.py::[1mtest_clamp[0m
-[31mERROR[0m tests/test_benchmarks.py::[1mtest_fractional[0m
-[31mERROR[0m tests/test_benchmarks.py::[1mtest_intcomma[0m
-[31mERROR[0m tests/test_benchmarks.py::[1mtest_intword[0m
-[31mERROR[0m tests/test_benchmarks.py::[1mtest_metric[0m
-[31mERROR[0m tests/test_benchmarks.py::[1mtest_natural_list[0m
-[31mERROR[0m tests/test_benchmarks.py::[1mtest_naturaldate[0m
-[31mERROR[0m tests/test_benchmarks.py::[1mtest_naturalday[0m
-[31mERROR[0m tests/test_benchmarks.py::[1mtest_naturaldelta[0m
-[31mERROR[0m tests/test_benchmarks.py::[1mtest_naturalsize[0m
-[31mERROR[0m tests/test_benchmarks.py::[1mtest_naturaltime[0m
-[31mERROR[0m tests/test_benchmarks.py::[1mtest_ordinal[0m
+ERROR tests/test_benchmarks.py::test_clamp
+ERROR tests/test_benchmarks.py::test_fractional
+ERROR tests/test_benchmarks.py::test_intcomma
+ERROR tests/test_benchmarks.py::test_intword
+ERROR tests/test_benchmarks.py::test_metric
+ERROR tests/test_benchmarks.py::test_natural_list
+ERROR tests/test_benchmarks.py::test_naturaldate
+ERROR tests/test_benchmarks.py::test_naturalday
+ERROR tests/test_benchmarks.py::test_naturaldelta
+ERROR tests/test_benchmarks.py::test_naturalsize
+ERROR tests/test_benchmarks.py::test_naturaltime
+ERROR tests/test_benchmarks.py::test_ordinal
 … (3 more lines)
 ```
 
 *[Bash: python -m pytest -q -p no:cacheprovider --ignore=tests/test_i18n.py --ignore=tests/test_time.py --ignore=src/humanize/time.py --ignore=src/humanize/i18n.py 2>&1 | grep -E "^E |fixture '" | sort | uniq -c | head; python -m pytest -q -p no:cacheprovider tests/test_filesize.py src/humanize/filesize.py 2>&1 | tail -3]*
 
 ```
-15 [31mE       fixture 'benchmark' not found[0m
-[31mERROR[0m tests/test_filesize.py
+15 E       fixture 'benchmark' not found
+ERROR tests/test_filesize.py
 !!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
-[31m[31m[1m2 errors[0m[31m in 0.05s[0m[0m
+2 errors in 0.05s
 ```
 
 **Claude:** The 15 errors come from the missing `pytest-benchmark` plugin, not from the code. Next I'll check why the targeted run failed to collect.
@@ -276,13 +276,13 @@ File created successfully at: ~/code/humanize/src/humanize/_version.py (file sta
 *[Bash: python -m pytest -p no:cacheprovider tests/test_filesize.py src/humanize/filesize.py -v 2>&1 | grep -E "Error|error|PASS|FAIL" | head -20]*
 
 ```
-[1mcollecting ... [0mcollected 1 item / 2 errors
-[31mImportError while importing test module '~/code/humanize/tests/test_filesize.py'.
-E   ModuleNotFoundError: No module named 'humanize'[0m
-[31mImportError while importing test module '~/code/humanize/tests/test_filesize.py'.
-E   ModuleNotFoundError: No module named 'humanize'[0m
+collecting ... collected 1 item / 2 errors
+ImportError while importing test module '~/code/humanize/tests/test_filesize.py'.
+E   ModuleNotFoundError: No module named 'humanize'
+ImportError while importing test module '~/code/humanize/tests/test_filesize.py'.
+E   ModuleNotFoundError: No module named 'humanize'
 !!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
-[31m============================== [31m[1m2 errors[0m[31m in 0.05s[0m[31m ===============================[0m
+============================== 2 errors in 0.05s ===============================
 ```
 
 **Claude:** That's only an import-path quirk: `src/` lands on `sys.path` only when the package `__init__` is collected first. The broad run did include the filesize tests, so I'll confirm my new cases ran in it.
@@ -290,7 +290,7 @@ E   ModuleNotFoundError: No module named 'humanize'[0m
 *[Bash: python -m pytest -v -p no:cacheprovider --ignore=tests/test_i18n.py --ignore=tests/test_time.py --ignore=src/humanize/time.py --ignore=src/humanize/i18n.py --ignore=tests/test_benchmarks.py 2>&1 | grep -E "filesize|passed|failed" | grep -vE "PASSED" ; python -m pytest -v -p no:cacheprovider --ignore=tests/test_i18n.py --ignore=tests/test_time.py --ignore=src/humanize/time.py --ignore=src/humanize/i18n.py --ignore=tests/test_benchmarks.py 2>&1 | grep -cE "filesize.*PASSED"]*
 
 ```
-[32m============================= [32m[1m326 passed[0m[32m in 0.15s[0m[32m ==============================[0m
+============================= 326 passed in 0.15s ==============================
 83
 ```
 

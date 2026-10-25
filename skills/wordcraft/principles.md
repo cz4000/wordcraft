@@ -1,6 +1,6 @@
 # Principles
 
-Each principle answers a failure seen when Claude wrote without this skill, or one the skill's owner named after reading blind samples. The ideas come from William Zinsser's *On Writing Well* (25th anniversary edition, 2001) the six rules at the end of George Orwell's essay "Politics and the English Language" (1946), and Charlie Euchner's "Ten Essential Rules for Writing Well" (*The Elements of Writing*, 2018, https://theelementsofwriting.com/ten-essential-rules-for-writing-well/), restated here in our own words. Page numbers are from Zinsser's edition.
+Each principle answers a failure seen when Claude wrote without this skill, or one its tester named after reading blind samples. The ideas come from William Zinsser's *On Writing Well* (25th anniversary edition, 2001), the six rules at the end of George Orwell's essay "Politics and the English Language" (1946), and Charlie Euchner's "Ten Essential Rules for Writing Well" (*The Elements of Writing*, 2018, https://theelementsofwriting.com/ten-essential-rules-for-writing-well/), restated here in our own words. Page numbers are from Zinsser's edition.
 
 ## Contents
 
@@ -30,7 +30,7 @@ Don't assume readers know what you know, or that they remember what you explaine
 
 Euchner pictures the same reader more kindly: intelligent, but without your background (rule 10). Write for that person and you neither lose them nor talk down to them.
 
-The owner of this skill added one convention: plain words first, then the technical name in brackets for readers who want to find it.
+This skill adds one convention of its own: plain words first, then the technical name in brackets for readers who want to find it.
 
 **Before:** "Fixed the `flush_on_exit` path so `CACHE_WARM` no longer races the session loader."
 
@@ -48,7 +48,7 @@ Most first drafts can lose a large share of their words without losing any infor
 
 ## Match the shape to the content
 
-A paragraph is a unit of thought, and chopping one line of reasoning into labelled fragments makes the reader do the joining (ch. 10, "Paragraphs", pp. 80–81). But a real list can be a list (ch. 10, p. 74). Give each paragraph one idea and develop it. Take a complicated subject apart and walk the reader through the pieces in order, instead of cramming several ideas into one passage (Euchner, rules 3–5). When content is a set of separate items, such as a weekly status, options or next steps, a few short headed groups let a busy reader find their part. The skill's owner also asked for a small diagram or example where it shows a difference faster than prose. Don't write anything you wouldn't say out loud to the person (ch. 5, p. 27).
+A paragraph is a unit of thought, and chopping one line of reasoning into labelled fragments makes the reader do the joining (ch. 10, "Paragraphs", pp. 80–81). But a real list can be a list (ch. 10, p. 74). Give each paragraph one idea and develop it. Take a complicated subject apart and walk the reader through the pieces in order, instead of cramming several ideas into one passage (Euchner, rules 3–5). When content is a set of separate items, such as a weekly status, options or next steps, a few short headed groups let a busy reader find their part. This skill also asks for a small diagram or example where it shows a difference faster than prose. Don't write anything you wouldn't say out loud to the person (ch. 5, p. 27).
 
 **Before** (one explanation, chopped up): "**Cause:** The cache expired early. **Fix:** I changed the setting. **Impact:** Pages load faster."
 

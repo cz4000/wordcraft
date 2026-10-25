@@ -1,6 +1,6 @@
 ---
 name: wordcraft
-description: Writes clear, warm, easy-to-read prose for a real reader. Use when writing or replying to an email or message, summarizing finished work for someone who was away, answering a question in chat, explaining something to a non-expert, or drafting a post, update, announcement, pull request description, report or article.
+description: Writes clear, warm, easy-to-read prose for a real reader. Use when writing or replying to an email or message, summarizing finished work for someone who was away, explaining something to a non-expert, or drafting a post, update, announcement, pull request description, report or article.
 ---
 
 # Wordcraft
