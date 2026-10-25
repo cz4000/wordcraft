@@ -156,3 +156,16 @@ def test_run_uses_the_given_skill_dir(tmp_path, monkeypatch):
     run.main(["run", "--arms", "real", "--models", "opus", "--reps", "1",
               "--skill-dir", str(skill), "--out", str(tmp_path / "out")], root=tmp_path)
     assert seen[0][seen[0].index("--plugin-dir") + 1] == str(skill)
+
+
+def test_run_uses_the_given_always_on_file(tmp_path, monkeypatch):
+    tasks = [{"id": "t0", "form": "x", "prompt": "p", "fixtures": [], "expects_trigger": True}]
+    (tmp_path / "evals").mkdir()
+    (tmp_path / "evals" / "tasks.json").write_text(json.dumps(tasks))
+    custom = tmp_path / "v08-always-on.md"
+    custom.write_text("V08 LINES")
+    seen = []
+    monkeypatch.setattr(run, "execute", lambda cmd, cwd: seen.append((cwd / "CLAUDE.md").read_text()) or run.RunResult("ok", True, 1, 1))
+    run.main(["run", "--arms", "real", "--models", "opus", "--reps", "1",
+              "--always-on", str(custom), "--out", str(tmp_path / "out")], root=tmp_path)
+    assert seen == ["V08 LINES"]

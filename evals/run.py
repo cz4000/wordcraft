@@ -141,7 +141,7 @@ def load_task_prompt(task: dict, root: Path, task_set: str = "") -> str:
 
 def run_all(root: Path, arms: list[str], models: list[str], reps: int,
             task_ids: list[str], out: Path, dry_run: bool,
-            task_set: str = "", skill_dir: Path | None = None) -> None:
+            task_set: str = "", skill_dir: Path | None = None, always_on: Path | None = None) -> None:
     tasks = load_tasks(root, task_set)
     skill_dir = skill_dir or root
     if task_ids != ["all"]:
@@ -159,7 +159,7 @@ def run_all(root: Path, arms: list[str], models: list[str], reps: int,
     print(f"{len(jobs)} calls")
     if dry_run:
         return
-    always_on = root / "evals" / "always-on" / "CLAUDE.md"
+    always_on = always_on or root / "evals" / "always-on" / "CLAUDE.md"
 
     def do(job):
         model, arm, task, rep, path = job
@@ -217,12 +217,13 @@ def main(argv: list[str] | None = None, root: Path = ROOT) -> int:
     run_p.add_argument("--dry-run", action="store_true")
     run_p.add_argument("--task-set", default="", help="a folder under evals/ with its own tasks.json, e.g. heldout")
     run_p.add_argument("--skill-dir", type=Path, help="plugin folder holding the skill version to test (default: this repo)")
+    run_p.add_argument("--always-on", type=Path, help="always-on lines for that version (default: evals/always-on/CLAUDE.md)")
     probe_p = sub.add_parser("probe", help="check the clean setup with three live calls")
     probe_p.add_argument("--model", default="haiku")
     args = parser.parse_args(argv)
     if args.command == "probe":
         return probe(root, args.model)
-    run_all(root, args.arms, args.models, args.reps, args.tasks, args.out, args.dry_run, args.task_set, args.skill_dir)
+    run_all(root, args.arms, args.models, args.reps, args.tasks, args.out, args.dry_run, args.task_set, args.skill_dir, args.always_on)
     return 0
 
 
