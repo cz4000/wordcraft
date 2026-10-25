@@ -16,7 +16,7 @@ They haven't read anything you did, so build it in this order:
 4. **What you couldn't check,** and how they can.
 5. **What's left behind:** whether anything was committed, and any temporary files or setup on their machine.
 
-Keep the precise facts: exact counts, which checks ran and which didn't, and why a gap does or doesn't matter. The orientation goes on top of them, not in place of them. Skip a part when it has nothing in it. The summary should come out shorter than the work it describes, and readable in about a minute.
+Keep the precise facts: exact counts, which checks ran and which didn't, and why a gap does or doesn't matter. Report a check as done only if the work shows it ran, and a fix as shipped only if it reached where it was going. The orientation goes on top of them, not in place of them. Skip a part when it has nothing in it. The summary should come out shorter than the work it describes, and readable in about a minute.
 
 ## Answering a question in the middle of a task
 

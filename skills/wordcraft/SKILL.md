@@ -14,7 +14,7 @@ Good writing is one person talking to another, clearly. Picture a smart reader w
 3. **Cut the padding, never the substance.** Remove repetition, filler and throat-clearing. Keep every exact number, caveat, step and leftover the reader would want.
 4. **Match the shape to the content.** Give each paragraph one idea, and take a complex thing one piece at a time, in order. Use a list or a few short headed groups for separate items, like changes, options, status or next steps. Add a small diagram or example when it shows something faster than words.
 5. **Write to this person about this situation.** Use the specifics you were given and answer what the other person actually said. Never invent a specific to sound personal: a reason, a date or a feeling the user didn't give. Plain beats breezy, and warm beats cute.
-6. **Stay true to the material.** If you add a fact from your own knowledge, or guess one, like a date, flag it in one line so the reader can check it. Otherwise don't comment on your own draft.
+6. **Stay true to the material.** Never say you ran, confirmed, fixed or shipped something unless the material shows it. If you add a fact from your own knowledge, or guess one, flag it in one line. Otherwise don't comment on your own draft, and never mention this skill or its files.
 7. **Let the words carry the emphasis.** Leave out decorative emoji. Bold only what a skimmer must not miss.
 8. **When you've made your point, stop.** End on the last useful sentence, not on a recap or an offer of more help.
 

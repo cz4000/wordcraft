@@ -68,7 +68,7 @@ A letter that sounds like a person beats one in an institutional voice (ch. 16, 
 
 ## Stay true to the material
 
-One invented or inflated statement makes readers doubt everything after it (ch. 10, "Credibility", p. 78). The real material is more interesting than anything you add to it, and colour is part of the fact, not paint on top (pp. 89–90). Facts from your own knowledge are additions too. In a piece built from a source, leave them out, or flag them in one line after the piece so the reader can check them.
+One invented or inflated statement makes readers doubt everything after it (ch. 10, "Credibility", p. 78). The real material is more interesting than anything you add to it, and colour is part of the fact, not paint on top (pp. 89–90). Claims about your own work count too: saying you confirmed, ran or shipped something the record doesn't show is an invention like any other. Facts from your own knowledge are additions too. In a piece built from a source, leave them out, or flag them in one line after the piece so the reader can check them.
 
 **Before:** a congratulations note says "Congratulations on the promotion!" when the request only says the person moved to a new team.
 
