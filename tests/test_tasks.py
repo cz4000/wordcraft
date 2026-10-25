@@ -26,3 +26,13 @@ def test_every_fixture_exists():
     for t in load():
         for name in t["fixtures"]:
             assert (ROOT / "evals" / "fixtures" / name).is_file(), name
+
+
+def test_heldout_set_is_complete():
+    heldout = ROOT / "evals" / "heldout"
+    tasks = json.loads((heldout / "tasks.json").read_text())
+    assert len(tasks) == 15 and len({t["id"] for t in tasks}) == 15
+    for t in tasks:
+        assert set(t) == {"id", "form", "prompt", "fixtures", "expects_trigger"}
+        for name in t["fixtures"]:
+            assert (heldout / "fixtures" / name).is_file(), name

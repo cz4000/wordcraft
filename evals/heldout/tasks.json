@@ -1,0 +1,107 @@
+[
+  {
+    "id": "unhappy-customer-reply",
+    "form": "customer service email reply",
+    "prompt": "Can you draft a reply to this? I'm the customer support lead at Fernhill Outdoor, name's Jamie. She's completely right, her ticket got closed automatically by mistake when we switched helpdesk systems last week, which is embarrassing. What I can offer: we'll courier a replacement pole hub today, it should be with her in 2 working days, and we'll refund the £45 priority delivery either way. If she'd rather just have her money back for the whole tent, that's fine too, we'll send a courier to collect it at no cost to her. Her email is below.",
+    "fixtures": ["customer-email.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "missed-deadline-apology",
+    "form": "apology email to a client",
+    "prompt": "I need to email Mark Whitley at Oakridge Dental. We promised him the new brand guidelines by Friday the 23rd and didn't deliver, and I didn't tell him until he chased me, which is the part I feel worst about. Our illustrator was off sick for over a week and I kept thinking we'd catch up. New date for the full guidelines is Thursday 5 Nov. I'll send him the logo and colour section on Wednesday the 28th so his team can start using it, and I'll send a short status update every Friday until it's done. I want to own it properly without grovelling or making excuses.",
+    "fixtures": [],
+    "expects_trigger": true
+  },
+  {
+    "id": "proposal-feedback",
+    "form": "written feedback to a colleague",
+    "prompt": "My colleague Priya asked me for honest feedback on her proposal before it goes to the leadership group on 14 Nov. I think the idea is genuinely good and I want it to get approved, but there are some holes I think leadership will go straight for. Can you write up feedback I can send her? We're peers, we've worked together about two years.",
+    "fixtures": ["proposal-draft.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "decision-request-to-manager",
+    "form": "email asking a manager to decide",
+    "prompt": "need to email my manager Ana asking her to pick between the two van lease options. she has to decide by friday. my notes are below, they're a mess. she's busy and doesn't know the details",
+    "fixtures": ["decision-notes.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "mentor-leaving-card",
+    "form": "short thank-you note",
+    "prompt": "My mentor Ruth is leaving the firm on Friday after 14 years and there's a card going round. She hired me in 2019 when I had zero agency experience, taught me pretty much everything I know about running client workshops, and once stayed with me until 9pm the night before my first big pitch going through it slide by slide (we won it!). I want to write something in the card that's more than \"good luck, you'll be missed!!\" but it's a card, so not an essay. Can you help?",
+    "fixtures": [],
+    "expects_trigger": true
+  },
+  {
+    "id": "meeting-recap",
+    "form": "meeting recap email",
+    "prompt": "can you turn these into a recap email for the spring fair committee? want to send it tonight",
+    "fixtures": ["meeting-notes.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "policy-change-to-customers",
+    "form": "customer announcement email",
+    "prompt": "I work at Pulse & Pine (gym chain) and this memo changes how membership freezes work from January. I need to write the email to members, it has to go out by 1 Dec. Loads of people use freezes so this is going to annoy some of them. Can you write it?",
+    "fixtures": ["policy-memo.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "lesson-learned-post",
+    "form": "LinkedIn post",
+    "prompt": "I want to turn these notes into a LinkedIn post. I run a small independent coffee and homeware shop called Thimble & Grain. Not trying to go viral, I just want to share it honestly with other shop owners.",
+    "fixtures": ["lesson-notes.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "exec-report-summary",
+    "form": "executive summary of a report",
+    "prompt": "My boss, Cllr Haddad (cabinet member for transport), is meeting both bus operators on Tuesday and won't have time to read this whole report beforehand. Can you summarise it for her? She knows the city inside out, she just hasn't read this.",
+    "fixtures": ["transport-report.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "short-story-summary",
+    "form": "story summary",
+    "prompt": "My book club is picking short stories for next month and someone put this one forward. Can you give me a short summary so I can tell the group what it's about and whether we should choose it?",
+    "fixtures": ["story-lost-property.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "newsletter-true-story",
+    "form": "company newsletter story",
+    "prompt": "I put together the staff newsletter at Halvorsen Distribution. I want to write up what happened on the Brackenby night shift when the cold room failed, 400-600 words. My notes from talking to everyone are below.",
+    "fixtures": ["coldroom-notes.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "calendar-instructions-for-mum",
+    "form": "step-by-step instructions",
+    "prompt": "My mum's 74 and not very confident with her phone. I've shared our family calendar with her, it shows up as \"Family\" in green in the calendar app that came on her phone. I'd like her to be able to add her own appointments to it, like her hospital check-ups, so my brother and I can see them, and set a reminder for the day before. Could you write instructions I can print and leave with her? She'll be doing this on her own, I live two hours away.",
+    "fixtures": [],
+    "expects_trigger": true
+  },
+  {
+    "id": "baking-soda-vs-powder",
+    "form": "quick chat answer",
+    "prompt": "whats actually the difference between baking soda and baking powder? recipe says powder and i only have soda",
+    "fixtures": [],
+    "expects_trigger": false
+  },
+  {
+    "id": "bugfix-handoff",
+    "form": "end-of-day coding handoff",
+    "prompt": "I'm off tomorrow and Kofi is taking over this bug. Can you write him an end-of-day handover from my log? He knows the codebase but hasn't seen this ticket.",
+    "fixtures": ["work-log.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "changelog-for-stakeholders",
+    "form": "non-technical change explainer",
+    "prompt": "Engineering put this in the changelog and apparently that counts as telling everyone. Our account managers and support team need to know what actually changed for customers before the calls start coming in, and none of them are going to read this. Can you write something I can post in the customer team channel?",
+    "fixtures": ["changelog-entry.md"],
+    "expects_trigger": true
+  }
+]

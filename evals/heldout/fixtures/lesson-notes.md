@@ -1,0 +1,14 @@
+- ran the shop 4 yrs, always did a big 30% off sale every Jan + summer
+- thought sales = good, busy weekends, felt great
+- last year actually sat down w/ my accountant (Fen) and looked at it properly
+- sale weeks: revenue up ~40%, profit basically flat or DOWN once you count extra staff hours
+- worse: regulars started waiting for the sale. Full price sales in Dec + June dropped every year. I trained them to wait!!
+- one customer literally said "oh I'll come back in January" at the till in December. that stung
+- this year: no Jan sale. scary.
+- did instead: small thank-you for regulars — free gift wrapping all year, a loyalty card (10th coffee bag free), first look at new stock evening in Feb with wine
+- result: Jan revenue down 18% vs last Jan. BUT profit for Jan–Mar up 11% overall
+- Dec full-price sales up too (early to say if that's because of this)
+- lost a few bargain hunters. honestly fine
+- lesson: busy ≠ profitable. and what you reward is what you get
+- still not sure about summer — might do a small clearance on old stock only, not storewide
+- want to post on LinkedIn, other small shop owners in my network might be doing the same thing
