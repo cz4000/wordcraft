@@ -1,0 +1,107 @@
+[
+  {
+    "id": "funeral-words-grandad",
+    "form": "few words at a funeral",
+    "prompt": "my grandad died last tuesday and the funeral's this friday. mum's asked me to say a few words for the grandkids, about 3 mins. I've copied in everything people sent me. I've tried to start it about ten times and I just end up crying at the laptop. can you help me write it",
+    "fixtures": ["grandad-des-memories.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "text-friend-diagnosis",
+    "form": "message to a friend who is ill",
+    "prompt": "My friend Ros told me last night she's got breast cancer, stage 2, she starts chemo in a few weeks. We were really close at uni but we've drifted a bit since we both had kids, we see each other maybe twice a year now. I want to send her a message but everything I write either sounds like a sympathy card or like I'm making it about me. She hates a fuss. What do I say?",
+    "fixtures": [],
+    "expects_trigger": true
+  },
+  {
+    "id": "card-niece-nurse",
+    "form": "congratulations card message",
+    "prompt": "My niece Amara has just found out she's passed her finals and is officially a qualified nurse!! She failed a module last year and nearly packed it in, and she worked nights at a care home the whole way through. I'm her aunt, we're close, and I talked her round when she wanted to quit. My sister's having a little do for her on Saturday and I want to write something in the card. She'd cringe at anything too soppy but I want her to know how proud I am.",
+    "fixtures": [],
+    "expects_trigger": true
+  },
+  {
+    "id": "resignation-arts-centre",
+    "form": "resignation letter",
+    "prompt": "Handing my notice in on Thursday. I want the letter to be nice, it's a small world and I might want to work with these people again. My notes are below, some of it is just me ranting so ignore that bit",
+    "fixtures": ["hannah-leaving-notes.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "intro-baker-consultant",
+    "form": "introduction email",
+    "prompt": "can you write an email introducing these two? I'll cc them both. notes below",
+    "fixtures": ["intro-notes-marcus-ines.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "self-review-support-lead",
+    "form": "annual review self-assessment",
+    "prompt": "Self assessment is due Friday and I've been putting it off for weeks. My notes and the HR questions are below. First person please, it goes to my manager and then HR.",
+    "fixtures": ["year-notes-and-form.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "fun-run-volunteer-thanks",
+    "form": "thank-you email to volunteers",
+    "prompt": "We had our hospice fun run on Saturday and it went brilliantly despite the weather. I need to send a thank you email to all the volunteers - they gave up their whole Saturday in the rain. Here's the numbers and the bits I jotted down.",
+    "fixtures": ["fun-run-results.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "explain-hospital-letter",
+    "form": "explaining a hospital letter to a parent",
+    "prompt": "My mum got this letter for my dad's camera test and she's in a right state about it. Dad's 79, he's on warfarin, metformin and an iron tablet, and Mum does all his tablets for him. She can't make head or tail of it. Can you explain to her what she needs to do and when? I'm going to print it out for her.",
+    "fixtures": ["endoscopy-letter.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "summary-it-proposal",
+    "form": "summary of a supplier proposal for a decision",
+    "prompt": "I'm practice manager for a group of three dental practices. Our IT guy Gary is retiring in March so we asked a few companies to quote, and this is the one the partners seem keenest on. The partners (three dentists) meet Thursday to decide whether to sign. None of them are going to read the whole thing. Can you summarise it for them? For reference we pay Gary about £1,450 a month at the moment, all in.",
+    "fixtures": ["it-services-proposal.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "story-check-for-12yo",
+    "form": "short story summary for a parent",
+    "prompt": "My daughter's in year 7 and her English class is reading this short story next week. She's 12 and quite a sensitive kid, and her nan died in the summer so she's been up and down. Can you tell me what happens in it and whether there's anything I should know before she reads it? I haven't got time to read it myself tonight.",
+    "fixtures": ["story-the-pigeon-loft.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "heat-pump-study-explainer",
+    "form": "plain-English summary of a research article",
+    "prompt": "Our boiler's on its way out (the engineer reckons it's got one more winter in it, maybe). We live in a 1908 terrace, solid brick walls, no cavity, double glazed, and the radiators are whatever went in back in the 70s. A colleague sent me this study and says it proves heat pumps work fine in old houses. I'm not a science person. What does it actually say, and does it help us decide?",
+    "fixtures": ["heat-pump-study.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "match-report-womens-football",
+    "form": "club website match report",
+    "prompt": "can you write up today's match for the club website? notes below. I'm the club secretary but honestly I'm better at spreadsheets than this",
+    "fixtures": ["match-notes.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "kettle-descale-question",
+    "form": "quick everyday question",
+    "prompt": "quick q - how often am I actually supposed to descale the kettle? we've moved somewhere with really hard water and there are white bits floating in my tea now lol",
+    "fixtures": [],
+    "expects_trigger": false
+  },
+  {
+    "id": "reply-groomer-review",
+    "form": "public reply to a negative review",
+    "prompt": "Someone left us a 1 star review yesterday and I'm so upset. Me and Jen have run this place for 9 years. I want to reply publicly but right now I'd just say something I regret. The review and what actually happened are below.",
+    "fixtures": ["groomer-review-and-account.md"],
+    "expects_trigger": true
+  },
+  {
+    "id": "notes-for-house-sitter",
+    "form": "instructions for a house and pet sitter",
+    "prompt": "My sister's staying at ours to look after the dog and cat while we're away. Can you turn my brain dump into something she can actually follow? She's never looked after Pickle before.",
+    "fixtures": ["sitter-brain-dump.md"],
+    "expects_trigger": true
+  }
+]

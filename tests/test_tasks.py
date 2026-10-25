@@ -31,7 +31,7 @@ def test_every_fixture_exists():
 import pytest
 
 
-@pytest.mark.parametrize("task_set", ["heldout", "heldout2", "heldout3"])
+@pytest.mark.parametrize("task_set", ["heldout", "heldout2", "heldout3", "heldout4"])
 def test_heldout_set_is_complete(task_set):
     heldout = ROOT / "evals" / task_set
     tasks = json.loads((heldout / "tasks.json").read_text())
