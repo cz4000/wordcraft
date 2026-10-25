@@ -208,7 +208,15 @@ Five of the six misses were on the end-of-session summary. That fails the plan's
 
 ## AI detection (Pangram)
 
-Six texts from round 3 were scanned by hand with Pangram's free checker: three tasks, each with and without the skill. All six scored 100% AI (`evals/pangram/round3-opus.md`). The word counts there are Pangram's own, which include formatting marks. Pangram detects who wrote a text, not how well it reads.
+Six texts from round 3 were scanned by hand with Pangram's free checker: three tasks, each with and without the skill. All six scored 100% AI, with and without the skill:
+
+| Task | With the skill | Without the skill |
+|---|---|---|
+| Announcement | 100% AI | 100% AI |
+| Reply email | 100% AI | 100% AI |
+| Decline email | 100% AI | 100% AI |
+
+The scans used Pangram's free web checker (model "Pangram 4.1"), whose free tier covered six texts. Pangram detects who wrote a text, not how well it reads.
 
 ## Before and after (Opus, v0.4.1)
 

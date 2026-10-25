@@ -45,9 +45,6 @@ def test_always_on_at_most_10_lines():
     assert 0 < len(lines) <= 10
 
 
-def test_always_on_copies_match():
-    assert (ROOT / "always-on.md").read_text() == (ROOT / "evals" / "always-on" / "CLAUDE.md").read_text()
-
 
 def test_exactly_one_installable_skill():
     # `npx skills add` discovers every SKILL.md outside tests/; the probe's stand-in must stay hidden there

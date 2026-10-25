@@ -148,8 +148,7 @@ def test_run_uses_the_given_skill_dir(tmp_path, monkeypatch):
     tasks = [{"id": "t0", "form": "x", "prompt": "p", "fixtures": [], "expects_trigger": True}]
     (tmp_path / "evals").mkdir()
     (tmp_path / "evals" / "tasks.json").write_text(json.dumps(tasks))
-    (tmp_path / "evals" / "always-on").mkdir()
-    (tmp_path / "evals" / "always-on" / "CLAUDE.md").write_text("A")
+    (tmp_path / "always-on.md").write_text("A")
     seen = []
     monkeypatch.setattr(run, "execute", lambda cmd, cwd: seen.append(cmd) or run.RunResult("ok", True, 1, 1))
     skill = tmp_path / "v05"
@@ -169,3 +168,14 @@ def test_run_uses_the_given_always_on_file(tmp_path, monkeypatch):
     run.main(["run", "--arms", "real", "--models", "opus", "--reps", "1",
               "--always-on", str(custom), "--out", str(tmp_path / "out")], root=tmp_path)
     assert seen == ["V08 LINES"]
+
+
+def test_default_always_on_is_the_published_file(tmp_path, monkeypatch):
+    tasks = [{"id": "t0", "form": "x", "prompt": "p", "fixtures": [], "expects_trigger": True}]
+    (tmp_path / "evals").mkdir()
+    (tmp_path / "evals" / "tasks.json").write_text(json.dumps(tasks))
+    (tmp_path / "always-on.md").write_text("PUBLISHED LINES")
+    seen = []
+    monkeypatch.setattr(run, "execute", lambda cmd, cwd: seen.append((cwd / "CLAUDE.md").read_text()) or run.RunResult("ok", True, 1, 1))
+    run.main(["run", "--arms", "real", "--models", "opus", "--reps", "1", "--out", str(tmp_path / "out")], root=tmp_path)
+    assert seen == ["PUBLISHED LINES"]

@@ -159,7 +159,7 @@ def run_all(root: Path, arms: list[str], models: list[str], reps: int,
     print(f"{len(jobs)} calls")
     if dry_run:
         return
-    always_on = always_on or root / "evals" / "always-on" / "CLAUDE.md"
+    always_on = always_on or root / "always-on.md"
 
     def do(job):
         model, arm, task, rep, path = job
@@ -217,7 +217,7 @@ def main(argv: list[str] | None = None, root: Path = ROOT) -> int:
     run_p.add_argument("--dry-run", action="store_true")
     run_p.add_argument("--task-set", default="", help="a folder under evals/ with its own tasks.json, e.g. heldout")
     run_p.add_argument("--skill-dir", type=Path, help="plugin folder holding the skill version to test (default: this repo)")
-    run_p.add_argument("--always-on", type=Path, help="always-on lines for that version (default: evals/always-on/CLAUDE.md)")
+    run_p.add_argument("--always-on", type=Path, help="always-on lines for that version (default: always-on.md)")
     probe_p = sub.add_parser("probe", help="check the clean setup with three live calls")
     probe_p.add_argument("--model", default="haiku")
     args = parser.parse_args(argv)
