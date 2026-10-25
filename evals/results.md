@@ -4,11 +4,11 @@ wordcraft was built and tested on 24 and 25 October 2026 with Claude Code 2.1.28
 
 ## The short version
 
-**On new writing tasks it was never tuned on, wordcraft writes about a fifth shorter at the same judged quality.** Across 15 held-out tasks (customer replies, apologies, feedback, a report summary, a story summary, a newsletter story, instructions and more), blind judges preferred v0.5's reply in 12 pairs and plain Claude's in 11, with 7 ties. The skill's replies used 79% of the words.
+**v0.8 beats plain Claude on writing tasks it was never tuned on.** On a second set of 15 fresh tasks, blind judges preferred v0.8 in 17 pairs and plain Claude in 7, with 6 ties (71%, p=0.06). What made the difference: v0.8 checks the source material for problems the reader would want caught, such as a deadline that has already passed, a miscounted number of years or an assumed date, and lists them after the draft. Its replies are about as long as plain Claude's (95% of the words).
 
-**On the ten tasks it was developed on, the judges preferred it clearly:** 21 pairs to 4 for v0.5 on Opus (84%, p=0.001), with no task lost. Much of that margin came from tuning on those same tasks, which the held-out test exposed.
+Earlier versions didn't carry over. v0.5 matched plain Claude on both fresh sets (12 to 11, and 12 to 12) while writing about a fifth shorter. Its big lead on the ten tasks it was developed on (21 to 4) came largely from tuning on them.
 
-On Sonnet (v0.4) the skill made no measurable difference, and on Haiku (v0.4) the judges preferred it in about seven of ten pairs. Neither was run on the held-out set. The bar set before testing was **not** met in full.
+Sonnet and Haiku were last tested on v0.4, on the original tasks only. The bar set before testing was **not** met in full.
 
 Two more limits:
 
@@ -17,7 +17,9 @@ Two more limits:
 
 The skill does not make Claude's writing look human to an AI detector, and wasn't designed to.
 
-## The held-out test
+## The held-out tests
+
+### Set 1: what didn't carry over
 
 Fifteen new tasks were written by an agent that never saw the skill (`evals/heldout/`): everyday emails and messages, a 2,100-word report to summarize for a busy councillor, a 1,600-word short story to summarize for a book club, a true story to write for a newsletter from rough notes, printed phone instructions for a 74-year-old, a quick cooking question, and two technical hand-offs. Each ran twice on Opus: plain, with v0.5, and with v0.7.
 
@@ -32,6 +34,17 @@ Both versions won 5 tasks, lost 5 and tied 5. The judges' reasons explain the lo
 - **One step further for the reader.** For the book club, plain Claude gave a spoiler-free blurb plus a private note on the ending. For the proposal feedback, it separated the three fixes that mattered before the deadline from the smaller points.
 
 v0.5 won the customer reply, the mentor's card, the LinkedIn post, the report summary and the quick question.
+
+### Set 2: v0.8
+
+v0.8 was built from what set 1 taught: keep the ban on notes about your own choices, but check the material and list real problems under a short "Check before sending". A second agent then wrote 15 more tasks without seeing the skill or set 1 (`evals/heldout2/`). These included a deposit dispute, a job application, a nursing reference, an outage report for a non-technical board, a 2,200-word board paper to summarize before a vote, a memoir chapter to summarize for a book group, a newspaper profile from interview notes, and a council letter rewritten for a worried 79-year-old. Each ran twice on Opus with each version's own always-on lines.
+
+| Version | Skill better | Baseline better | Tie | Skill's share | Tasks W–L–T | Words vs baseline |
+|---|---|---|---|---|---|---|
+| v0.5.1 | 12 | 12 | 6 | 50% | 6–5–4 | 83% |
+| **v0.8** | **17** | 7 | 6 | **71%** (p=0.06) | 8–2–5 | 95% |
+
+v0.8 added a check before sending to 25 of its 30 replies. Three examples of what it caught: the deposit reply noted that the agent's deadline had already passed, the job application noted that the applicant's own notes miscounted their years in post, and the leaving announcement noted that the month was assumed and that the 30th is a Monday. It lost the repair-café appeal and the quick credit-card question.
 
 ## How it was tested
 
@@ -108,7 +121,8 @@ What changed between versions:
   - Only Opus was rerun.
 - **v0.6** (not shipped): rule 1 became "bottom line up front" (BLUF), the summary followed SBAR, and a new form covered raising a problem. Openings oversimplified and articles stopped explaining terms.
 - **v0.7** (not shipped): v0.5 plus SBAR's "assessment" and "recommendation" parts in the summary. No measured gain.
-- **v0.5.1** (shipped): v0.5's skill text, with BLUF and SBAR credited in `principles.md` as the practices its summary order draws on.
+- **v0.5.1:** v0.5's skill text, with BLUF and SBAR credited in `principles.md` as the practices its summary order draws on.
+- **v0.8** (shipped): Claude checks the source for problems the reader would want caught and lists them, with any guess or outside fact, under "Check before sending". Notes about its own choices stay banned. The always-on lines change to match. Tested on held-out set 2 only, on Opus.
 - **v0.4.2:** v0.4.1 plus wording fixes from a final edit. It fixes three examples in `principles.md` that broke their own principle, and clarifies two lines of `SKILL.md` and one always-on line. It was not tested separately.
 - **v0.5:**
   - The form guidance moves from `forms.md` into `SKILL.md`, which grows from 489 to 833 words, and `forms.md` is retired.
@@ -146,7 +160,7 @@ The decline email lost on Opus (v0.4 and v0.4.1) and on Haiku, after winning on 
 
 **No version meets every condition.** With three samples per task, one sample can flip a task's verdict. The Opus pair results for v0.3, v0.4 and v0.4.1 (19, 17 and 19 better pairs) are within that noise. v0.5's result (21 to 4, p=0.001) is the strongest of any Opus round, and the first with no task lost.
 
-v0.4 replaced v0.3 because it lost less on Sonnet, and because its two new rules, no invented checks and no mention of the skill, fix real faults. v0.4.1 then fixed the conflicts the final review found. v0.5 was the best on these tasks, and v0.6 and v0.7 did not beat it. Its text ships as v0.5.1.
+v0.4 replaced v0.3 because it lost less on Sonnet, and because its two new rules, no invented checks and no mention of the skill, fix real faults. v0.4.1 then fixed the conflicts the final review found. v0.5 was the best on these tasks, and v0.6 and v0.7 did not beat it. Its text shipped as v0.5.1, and v0.8 replaced it after the second held-out test.
 
 ## The owner's blind reads
 
@@ -177,8 +191,8 @@ Six texts from round 3 were scanned by hand with Pangram's free checker: three t
 
 ## Known gaps
 
-- **No measured gain on new tasks.** On the held-out set the skill matches plain Claude's quality with about a fifth fewer words, but doesn't beat it.
-- **Useful checks get suppressed.** The rule against notes about the draft also stops Claude from flagging real problems in the source material, which readers want.
+- **One fresh test for v0.8.** Its 17-to-7 result is from one 15-task set on Opus (p=0.06): strong, but not yet confirmed on a third set or on Sonnet and Haiku.
+- **The length advantage is gone.** v0.8's checks bring its replies back to about plain Claude's length.
 - **Invented reasons in emails.** All three v0.4.1 replies to the speaker invitation add a reason the user never gave, and only one flags it. In v0.5, two of three open with a plain yes and add no reason. The third still opens "Thanks for getting in touch" and gives a reason the user never stated.
 - **Uneven forms.** On Opus v0.5 the decline email and the article only tie the baseline. On Sonnet and Haiku (v0.4) the summary fails the loading check.
 - **Summaries still use some unexplained names.** v0.5 summaries lead with the outcome and group the changes, but still mention things like `freezegun` and `#328` without saying what they are.

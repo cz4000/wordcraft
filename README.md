@@ -223,19 +223,20 @@ Then copy [always-on.md](always-on.md) into your `~/.claude/CLAUDE.md`, so the r
 
 I ran Claude Code headless in a clean setup, with and without the skill, and had blind Opus judges compare every pair twice, once in each order. When the two readings disagreed, the pair counted as a tie. The full method and every number are in [evals/results.md](evals/results.md).
 
-The honest headline comes from a held-out test: 15 new writing tasks, written by an agent that never saw the skill. They covered customer replies, an apology, feedback on a proposal, a meeting recap, a policy email, a LinkedIn post, phone instructions for an elderly parent, a summary of a long report, a summary of a short story, a true story for a newsletter and a quick cooking question.
+The honest headline comes from two held-out tests: sets of 15 new writing tasks, each written by an agent that never saw the skill.
 
-| On new tasks (Opus, v0.5) | Pairs (of 30) |
-|---|---|
-| Judges preferred the skill | 12 |
-| Judges preferred plain Claude | 11 |
-| Tie | 7 |
+| On fresh tasks (Opus) | Skill better | Plain Claude better | Tie |
+|---|---|---|---|
+| v0.5, set 1 | 12 | 11 | 7 |
+| **v0.8, set 2** | **17** | 7 | 6 |
 
-**Same quality, about a fifth shorter.** The skill's replies used 79% of the words, and the judges couldn't tell them apart on quality. Where plain Claude won, it was usually because it caught a real problem in the material, such as a date on the wrong weekday or a policy memo that contradicted itself, and flagged it before sending. The skill's rule against notes about the draft holds some of that back, and it's the next thing to fix.
+**v0.5 matched plain Claude, about a fifth shorter, but didn't beat it.** Where plain Claude won, it was usually because it caught a real problem in the material and flagged it. The skill's rule against notes about the draft held that back.
 
-On the ten tasks the skill was developed on, the judges preferred it in 21 pairs to 4 (v0.5, Opus), and it lost no task. Much of that margin came from tuning on those same tasks, which is why the held-out test matters. On Haiku (v0.4) the judges preferred the skill in about seven of ten pairs; on Sonnet (v0.4) it made no difference. Neither was run on the new tasks.
+**v0.8 fixed that and won 17 to 7 on tasks it had never seen** (p=0.06). It checks the source for problems the reader would want caught and lists them under "Check before sending". It caught a dispute deadline that had already passed, an applicant's miscounted years in post, and a date that was only assumed. Notes explaining its own choices stay banned. Its replies are about as long as plain Claude's.
 
-I also tried two variations built on BLUF and SBAR (v0.6 and v0.7). Neither beat v0.5, so the skill ships with v0.5's text, and credits both as the practices its summary order draws on.
+On the ten tasks the skill was developed on, the judges preferred v0.5 in 21 pairs to 4, but much of that margin came from tuning on those tasks, which is why the held-out tests matter. On Haiku (v0.4) the judges preferred the skill in about seven of ten pairs; on Sonnet (v0.4) it made no difference. Neither was run on the fresh sets.
+
+I also tried two variations built on BLUF and SBAR (v0.6 and v0.7). Neither beat v0.5, so the skill keeps v0.5's summary order and credits both as the practices it draws on.
 
 It won't get text past an AI detector. Pangram rated all six texts it scanned 100% AI, with and without the skill. That isn't what it's for.
 
