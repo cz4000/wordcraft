@@ -4,11 +4,11 @@ wordcraft was built and tested on 24 and 25 October 2026 with Claude Code 2.1.28
 
 ## The short version
 
-**v0.8 beats plain Claude on writing tasks it was never tuned on.** On a second set of 15 fresh tasks, blind judges preferred v0.8 in 17 pairs and plain Claude in 7, with 6 ties (71%, p=0.06). What made the difference: v0.8 checks the source material for problems the reader would want caught, such as a deadline that has already passed, a miscounted number of years or an assumed date, and lists them after the draft. Its replies are about as long as plain Claude's (95% of the words).
+**v0.8 beats plain Claude on writing tasks it was never tuned on, on all three models.** Across four runs on fresh tasks (sets 2 and 3), blind judges preferred v0.8 in 72 pairs and plain Claude in 27, with 21 ties (73%, p<0.0001). On set 3 alone: Opus 18 to 6, Sonnet 18 to 8, Haiku 19 to 6. What made the difference: v0.8 checks the source material for problems the reader would want caught, such as a deadline that has already passed, a miscounted number of years or an assumed date, and lists them after the draft. On Opus its replies are slightly shorter than plain Claude's; on Sonnet and Haiku they run about a quarter longer, because of the checks.
 
 Earlier versions didn't carry over. v0.5 matched plain Claude on both fresh sets (12 to 11, and 12 to 12) while writing about a fifth shorter. Its big lead on the ten tasks it was developed on (21 to 4) came largely from tuning on them.
 
-Sonnet and Haiku were last tested on v0.4, on the original tasks only. The bar set before testing was **not** met in full.
+The bar set before testing (on the original ten tasks) was **not** met in full; the fresh-task results above are the stronger evidence.
 
 Two more limits:
 
@@ -45,6 +45,18 @@ v0.8 was built from what set 1 taught: keep the ban on notes about your own choi
 | **v0.8** | **17** | 7 | 6 | **71%** (p=0.06) | 8–2–5 | 95% |
 
 v0.8 added a check before sending to 25 of its 30 replies. Three examples of what it caught: the deposit reply noted that the agent's deadline had already passed, the job application noted that the applicant's own notes miscounted their years in post, and the leaving announcement noted that the month was assumed and that the 30th is a Monday. It lost the repair-café appeal and the quick credit-card question.
+
+### Set 3: confirming v0.8 on three models
+
+A third agent wrote 15 more tasks without seeing the skill or the earlier sets (`evals/heldout3/`). They included a condolence message, a salary negotiation, a retirement speech, a reply to an upset sister, a group trip email, feedback on a 19-year-old's cover letter, a 2,200-word house survey to summarize before a call with the estate agent, a short story for a head of English choosing set texts, a letter to a local paper, an FAQ page and a podcast write-up. Plain Claude and v0.8 ran twice on each, on each model.
+
+| Model | Skill better | Baseline better | Tie | Skill's share | Tasks W–L–T | p | Words vs baseline |
+|---|---|---|---|---|---|---|---|
+| Opus | 18 | 6 | 6 | 75% | 8–1–6 | 0.02 | 92% |
+| Sonnet | 18 | 8 | 4 | 69% | 8–2–5 | 0.08 | 128% |
+| Haiku | 19 | 6 | 5 | 76% | 9–2–4 | 0.02 | 123% |
+
+Every model lost the story summary for the head of English. None of those replies had a check list. Plain Claude added practical help the teacher would want, such as links to exam questions, a warning that reluctant readers may find the story slow, and a reminder about copying permission. Haiku also lost the condolence message, and v0.8 added a "Check before sending" list under the condolence note in 5 of its 6 replies across models, which is out of place in a sympathy message.
 
 ## How it was tested
 
@@ -191,8 +203,9 @@ Six texts from round 3 were scanned by hand with Pangram's free checker: three t
 
 ## Known gaps
 
-- **One fresh test for v0.8.** Its 17-to-7 result is from one 15-task set on Opus (p=0.06): strong, but not yet confirmed on a third set or on Sonnet and Haiku.
-- **The length advantage is gone.** v0.8's checks bring its replies back to about plain Claude's length.
+- **Check lists where they don't belong.** v0.8 put a "Check before sending" under most condolence messages.
+- **One step further for the reader.** Plain Claude still sometimes adds practical extras the reader would want, such as teaching notes for a story summary, that the skill leaves out.
+- **Longer on Sonnet and Haiku.** Their checks make replies about a quarter longer than plain Claude's.
 - **Invented reasons in emails.** All three v0.4.1 replies to the speaker invitation add a reason the user never gave, and only one flags it. In v0.5, two of three open with a plain yes and add no reason. The third still opens "Thanks for getting in touch" and gives a reason the user never stated.
 - **Uneven forms.** On Opus v0.5 the decline email and the article only tie the baseline. On Sonnet and Haiku (v0.4) the summary fails the loading check.
 - **Summaries still use some unexplained names.** v0.5 summaries lead with the outcome and group the changes, but still mention things like `freezegun` and `#328` without saying what they are.
