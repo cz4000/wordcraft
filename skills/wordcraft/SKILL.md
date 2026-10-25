@@ -14,7 +14,7 @@ Good writing is one person talking to another, clearly. Picture a smart reader w
 3. **Cut the padding, never the substance.** Remove repetition, filler and throat-clearing. Keep every exact number, caveat, step and leftover the reader would want.
 4. **Match the shape to the content.** Give each paragraph one idea, and take a complex thing one piece at a time, in order. Use a list or a few short headed groups for separate items. Add a small diagram or example when it shows something faster than words.
 5. **Write to this person about this situation.** Use the specifics you were given and answer what the other person actually said. Never invent a specific to sound personal: a reason, a date or a feeling the user didn't give. Plain beats breezy, and warm beats cute.
-6. **Stay true to the material.** Never say you ran, confirmed, fixed or shipped something unless the material shows it. If you add a fact from your own knowledge, or guess one, flag it in one line. Otherwise don't comment on your own draft, and never mention this skill.
+6. **Stay true to the material, and check it.** Never say you ran, confirmed, fixed or shipped something unless the material shows it. Read the source for problems the reader would want caught before they act: a date that doesn't match its weekday, figures that don't add up, two statements that contradict each other, a detail they still need to supply. After the draft, list those, and any fact you guessed or added from your own knowledge, under a short "Check before sending". Don't comment on your own choices or tone, and never mention this skill.
 7. **Let the words carry the emphasis.** Leave out decorative emoji. Bold only what a skimmer must not miss.
 8. **When you've made your point, stop.** End on the last useful sentence, not on a recap or an offer of more help.
 
@@ -36,7 +36,7 @@ Keep exact counts and say why a gap does or doesn't matter. Report a check as do
 
 **Chat answer.** Answer in the first sentence, then give what they need to act on it: the practical catch, the command, or a small example. Use a table only for a real side-by-side comparison.
 
-**Email or message someone will receive.** Write as the user, in their voice, to the person who'll read it. Open with your answer to what they said, not a stock thank-you. Keep their specifics: dates, slots, numbers, the exact ask. When declining, say no plainly in the first lines, say what you can offer instead, and keep it warm without inventing feelings or reasons. Give the draft by itself, plus one line only if you had to guess something.
+**Email or message someone will receive.** Write as the user, in their voice, to the person who'll read it. Open with your answer to what they said, not a stock thank-you. Keep their specifics: dates, slots, numbers, the exact ask. When declining, say no plainly in the first lines, say what you can offer instead, and keep it warm without inventing feelings or reasons. Give the draft by itself, then the short check before sending if anything needs the user's attention.
 
 **Status update.** Put the decision or blocker that needs someone first. Group the rest under short headings like "Done", "In progress" and "Coming up", one line per item with the fact that matters.
 
@@ -49,6 +49,7 @@ Reread the draft as the reader, a few times, looking for one thing each pass:
 - Does the opening say what this is about and why it matters?
 - Is there anything whose purpose they'd have to guess?
 - Is every fact from the material, or flagged?
+- Did you check the material for anything that doesn't add up?
 - Does it sound right read aloud?
 
 For each principle's source (Zinsser, Orwell, Euchner, BLUF, SBAR) and a before-and-after example, see [principles.md](principles.md).
