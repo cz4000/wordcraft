@@ -12,7 +12,7 @@ So I did, adding ideas from George Orwell and Charlie Euchner. I wanted Claude, 
 
 ## What it changes
 
-Here are three of the ten test tasks. Each reply without the skill is folded away; each reply with it (v0.4.1) is shown as Claude wrote it. In all three, blind judges preferred the skill's reply in both reading orders.
+Here are three of the ten test tasks, from the v0.4.1 round. Each reply without the skill is folded away; each reply with it is shown as Claude wrote it. In all three, blind judges preferred the skill's reply in both reading orders.
 
 ### Replying to an invitation
 
@@ -191,11 +191,10 @@ The news comes first, the two rules sit in a short list, and the reason takes tw
 
 ## What's in it
 
-The skill is three files in `skills/wordcraft/`:
+The skill is two files in `skills/wordcraft/`:
 
-- `SKILL.md`, which Claude loads when it's drafting something;
-- `principles.md`, with each principle, its source and a before-and-after pair;
-- `forms.md`, with notes for chat answers, end-of-task summaries, status updates, emails and longer pieces.
+- `SKILL.md`, which Claude loads when it's drafting something. It holds the rules and a note for each kind of writing: end-of-task summaries, answers in the middle of a task, chat answers, emails, status updates and longer pieces.
+- `principles.md`, with each principle, its source and a before-and-after pair, mostly for human readers.
 
 On its own, the skill loads only for drafting tasks. The separate `always-on.md` is a heading, one framing line and seven rules; pasted into `~/.claude/CLAUDE.md`, they shape every reply, chat included.
 
@@ -226,18 +225,18 @@ I gave Claude Code ten everyday writing tasks in a clean setup and took three sa
 
 | Model | Judges preferred the skill (of 30 pairs) | Preferred no skill | Tie | Version |
 |---|---|---|---|---|
-| Opus | 19 | 7 | 4 | v0.4.1 |
+| Opus | 21 | 4 | 5 | v0.5 |
 | Haiku | 18 | 7 | 5 | v0.4 |
 | Sonnet | 12 | 11 | 7 | v0.4 |
 
-On Opus and Haiku, the judges preferred the skill in about seven of ten pairs that weren't ties. On Sonnet it made no measurable difference. The bar set before testing (win 8 of 10 tasks on Opus, and break even on Sonnet and Haiku) was **not** met in full: v0.4.1 won 7 of 10 tasks on Opus.
+On Opus, the judges preferred v0.5 in 21 of the 25 pairs that weren't ties, and it lost no task. On Haiku they preferred it in about seven of ten. On Sonnet it made no measurable difference. The bar set before testing (win 8 of 10 tasks on Opus, and break even on Sonnet and Haiku) was **not** met in full: v0.5 won 7 of 10 tasks on Opus and tied the other 3.
 
 Read those numbers with four limits in mind:
 
 - I tuned the skill and scored it on the same ten tasks.
-- Claude opened `principles.md` and `forms.md` in only 1 of 30 replies, so `SKILL.md` and the always-on lines do almost all the work.
-- The weak forms are decline emails, end-of-session summaries and articles written from a transcript. Session summaries are the problem that started this project.
-- The current version, v0.4.2, is v0.4.1 plus wording fixes, and hasn't been tested on its own.
+- Claude almost never opens a skill's extra files, so v0.5 keeps all the working guidance in `SKILL.md`.
+- End-of-session summaries, the problem that started this project, now beat the baseline on Opus, but decline emails and articles written from a transcript only tie it.
+- Sonnet and Haiku haven't been retested since v0.4.
 
 It won't get text past an AI detector. Pangram rated all six texts it scanned 100% AI, with and without the skill. That isn't what it's for.
 

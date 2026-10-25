@@ -16,7 +16,7 @@ Each principle answers a failure seen when Claude wrote without this skill, or o
 
 ## Start where the reader is
 
-The opening has one job: tell the reader what this is and why it's worth their attention, so they want to go on (ch. 9, "The Lead and the Ending", pp. 55–56). In technical writing, begin with the one fact the reader needs before anything else makes sense, then widen out to what it means for them (ch. 15, p. 150). A list of changes with no frame around it reads like a stranger's notes.
+The opening has one job: tell the reader what this is and why it's worth their attention, so they want to go on (ch. 9, "The Lead and the Ending", pp. 55–56). In technical writing, begin with the one fact the reader needs before anything else makes sense, then widen out to what it means for them (ch. 15, p. 150). A list of changes with no frame around it reads like a stranger's notes. The end-of-task summary order in `SKILL.md` is this project's own. It is close to "bottom line up front" writing and to the SBAR format (situation, background, assessment, recommendation) used for handovers in hospitals.
 
 **Before:** "Changed `to_local_date()` to use `account.tz`. Added 6 test cases. `tzdata` isn't installed, so `test_dst.py` was skipped."
 
